@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const userInput = prompt("This is a work in progress, enter password to access this project:");
 
     if (userInput === correctPassword) {
-      window.location.href = "TempCutWise/index.html";
+      window.location.href = "TempCutWise/";
     } else if (userInput !== null) {
       alert("Incorrect password.");
     }
