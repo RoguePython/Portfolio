@@ -1,24 +1,23 @@
-// Smooth scrolling to main components
-document.addEventListener('DOMContentLoaded', function() { 
-    document.querySelectorAll('.navbar a').forEach(anchor => {
-        anchor.addEventListener('click', function (scrollanimation) {
-            scrollanimation.preventDefault();
+  document.addEventListener("DOMContentLoaded", function () {
+    const correctPassword = "KimJongUn123"; // 🔐 Change this to your own password
+    let tries = 3;
 
-            const targetId = this.getAttribute('href').substring(1); // Get the ID of the target section
-            const targetElement = document.getElementById(targetId);
+    while (tries > 0) {
+      const input = prompt("Enter the password to access this project:");
+      if (input === correctPassword) {
+        break;
+      } else {
+        tries--;
+        if (tries === 0) {
+          alert("Too many failed attempts. Reload to try again.");
+          document.body.innerHTML = "<h1>Access Denied</h1>";
+        } else {
+          alert(`Incorrect password. You have ${tries} attempt(s) left.`);
+        }
+      }
+    }
+  });
 
-            if (targetElement) {
-                const offset = 50; // Adjust this value to set how much higher you want to scroll
-                const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
-
-                window.scrollTo({
-                    top: elementPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-});
 
 // script.js
 
