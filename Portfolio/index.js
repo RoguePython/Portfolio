@@ -38,3 +38,14 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+  function checkPassword() {
+    const correctPassword = "KimJongUn123";
+    const userInput = prompt("This is a work in progress, enter password to access this project:");
+
+    if (userInput === correctPassword) {
+      window.location.href = "TempCutWise/index.html";
+    } else if (userInput !== null) {
+      alert("Incorrect password.");
+    }
+  }

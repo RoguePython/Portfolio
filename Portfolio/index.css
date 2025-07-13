@@ -143,7 +143,7 @@ a {
     color: white;
     font-size: 28px;
     line-height: 1.5;
-    border: red solid 1px; 
+    border: rgb(75, 75, 75) solid 1px; 
 }
 
 .left_block b {
@@ -194,7 +194,7 @@ a {
     color: white;
     font-size: 22px;
     line-height: 1.5;
-    border: red solid 1px;  
+    border: rgb(75, 75, 75) solid 1px;  
 }
 
 .skills_technologies {
@@ -215,7 +215,7 @@ a {
     margin: 0;
     padding: 0;
     border: none;
-    border-top: 4px red solid;
+    border-top: 2px red solid;
 }
 
 /* Work Experience */
@@ -240,7 +240,7 @@ a {
 }
 
 .Work_Experience_Table th, .Work_Experience_Table td {
-    border: 1px solid red;
+    border: 1px solid rgb(75, 75, 75);
     padding: 10px;
     text-align: left;
 }
@@ -297,7 +297,7 @@ a {
 .project-container {
     position: relative;
     width: 300px;
-    border: 2px solid red;
+    border: 2px solid rgb(75, 75, 75);
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
@@ -367,7 +367,7 @@ a {
     margin: auto;
     width: 20%;
     background-color: rgb(31,45,57);
-    border: 1px red solid;
+    border: 1px rgb(75, 75, 75) solid;
     border-radius: 75px;
     text-align: center;
 }
