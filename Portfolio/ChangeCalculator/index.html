@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZAR Change Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>ZAR Change Calculator</h1>
+      <p class="lead">Enter an amount (e.g. <code>786.80</code>) and get the minimum notes &amp; coins.</p>
+
+      <form id="form">
+        <input id="amount" type="number" step="0.10" min="0" placeholder="Amount, e.g. 786.80" required />
+        <button id="btn" type="submit">Calculate</button>
+      </form>
+
+      <div id="error" class="error" hidden></div>
+
+      <div id="result" hidden>
+        <div class="row">
+          <h2>Breakdown</h2>
+          <button id="copyBtn" type="button">Copy JSON</button>
+        </div>
+        <table id="table">
+          <thead><tr><th>Denomination</th><th>Count</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <footer id="raw"></footer>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
