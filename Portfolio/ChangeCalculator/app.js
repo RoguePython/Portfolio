@@ -64,5 +64,5 @@ copyBtn.addEventListener('click', async () => {
     await navigator.clipboard.writeText(json);
     copyBtn.textContent = 'Copied!';
     setTimeout(() => copyBtn.textContent = 'Copy JSON', 1200);
-  } catch {}
+  } catch { }
 });

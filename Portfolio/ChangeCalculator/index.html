@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ZAR Change Calculator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="wrap">
     <div class="card">
       <h1>ZAR Change Calculator</h1>
-      <p class="lead">Enter an amount (e.g. <code>786.80</code>) and get the minimum notes &amp; coins.</p>
+      <h2>Explore alternatively via Swagger: <a href="https://change-calculator-benj.azurewebsites.net/swagger"
+          target="_blank" rel="noopener">/swagger</a></h2>
+      <p class="lead">Enter an amount (e.g. <code>786.80</code>) and get the minimum notes &amp; coins. Smallest supported denomination is <strong>10c</strong>.</p>
 
       <form id="form">
         <input id="amount" type="number" step="0.10" min="0" placeholder="Amount, e.g. 786.80" required />
@@ -25,7 +29,12 @@
           <button id="copyBtn" type="button">Copy JSON</button>
         </div>
         <table id="table">
-          <thead><tr><th>Denomination</th><th>Count</th></tr></thead>
+          <thead>
+            <tr>
+              <th>Denomination</th>
+              <th>Count</th>
+            </tr>
+          </thead>
           <tbody></tbody>
         </table>
         <footer id="raw"></footer>
@@ -33,6 +42,76 @@
     </div>
   </div>
 
+  <!-- ===== API DOCS CARD ===== -->
+  <div class="card" id="api-docs" style="margin-top:24px">
+    <h1 style="margin-bottom:8px">API Documentation</h1>
+    <p class="lead">Public endpoint for developers to calculate ZAR note &amp; coin breakdowns.</p>
+
+    <h2 style="margin:14px 0 6px">Base URL</h2>
+    <pre><code>https://change-calculator-benj.azurewebsites.net/api</code></pre>
+
+    <h2 style="margin:14px 0 6px">Endpoint</h2>
+    <pre><code>POST /change/calculate</code></pre>
+
+    <h2 style="margin:14px 0 6px">Request</h2>
+    <p>JSON body (amount in ZAR):</p>
+    <pre><code>{
+  "amount": 786.80
+}</code></pre>
+
+    <h2 style="margin:14px 0 6px">Response</h2>
+    <p>Returns the minimum number of banknotes &amp; coins:</p>
+    <pre><code>{
+  "R200": 3,
+  "R100": 1,
+  "R50": 1,
+  "R20": 1,
+  "R10": 1,
+  "R5": 1,
+  "R2": 0,
+  "R1": 1,
+  "50c": 1,
+  "20c": 1,
+  "10c": 1
+}</code></pre>
+
+    <h2 style="margin:14px 0 6px">HTTP Status Codes</h2>
+    <ul>
+      <li><strong>200 OK</strong> – Successful calculation.</li>
+      <li><strong>400 Bad Request</strong> – Invalid input (e.g., negative amount or more precise than 10c).</li>
+    </ul>
+
+    <h2 style="margin:14px 0 6px">Examples</h2>
+
+    <h3>cURL</h3>
+    <pre><code>curl -s -X POST \
+  https://change-calculator-benj.azurewebsites.net/api/change/calculate \
+  -H "Content-Type: application/json" \
+  -d "{\"amount\":786.80}"</code></pre>
+
+    <h3>JavaScript (fetch)</h3>
+    <pre><code>await fetch("https://change-calculator-benj.azurewebsites.net/api/change/calculate", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ amount: 786.80 })
+}).then(r =&gt; r.json());</code></pre>
+
+    <h3>.NET (HttpClient)</h3>
+    <pre><code>using var http = new HttpClient { BaseAddress = new Uri("https://change-calculator-benj.azurewebsites.net/api/") };
+var res = await http.PostAsJsonAsync("change/calculate", new { amount = 786.80m });
+var data = await res.Content.ReadFromJsonAsync&lt;Dictionary&lt;string,int&gt;&gt;();</code></pre>
+
+    <h2 style="margin:14px 0 6px">Notes</h2>
+    <ul>
+      <li>Smallest supported denomination is <strong>10c</strong>. Amounts must be representable to 10c.</li>
+      <li>CORS is enabled for <code>https://benjaminjoubert.co.za</code> and
+        <code>https://www.benjaminjoubert.co.za</code>.</li>
+      <li>Explore interactively via Swagger: <a href="https://change-calculator-benj.azurewebsites.net/swagger"
+          target="_blank" rel="noopener">/swagger</a>.</li>
+    </ul>
+  </div>
+
   <script src="app.js"></script>
 </body>
+
 </html>
