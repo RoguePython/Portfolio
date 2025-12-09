@@ -74,7 +74,7 @@ a {
 /* Homepage */
 
 .home {
-    background: linear-gradient(rgba(0, 0, 0, 25%) 20%, rgb(31,45,57)), url("html1.png");
+    background: linear-gradient(rgba(0, 0, 0, 25%) 20%, rgb(31,45,57)), url("assets/images/html1.png");
     background-size: cover;
     height: 1200px;
     text-align: center;
@@ -278,7 +278,7 @@ a {
 
 .Portfolio {
     text-align: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, 50%)), url("html1.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, 50%)), url("assets/images/html1.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
