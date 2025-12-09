@@ -1,0 +1,254 @@
+# Portfolio Project - Cursor Rules
+
+## Project Overview
+This is a personal portfolio website showcasing Benjamin Joubert's work, experience, and projects. The project includes multiple sub-projects: ChangeCalculator, TempCutWise, and the main portfolio site.
+
+## Coding Standards
+
+### Naming Conventions
+
+#### CSS Classes and IDs
+- Use **kebab-case** for all CSS class names and IDs
+- Examples: `.about-me`, `.work-experience`, `#contact-me`
+- Avoid: camelCase (`.aboutMe`), PascalCase (`.AboutMe`), snake_case (`.about_me`)
+
+#### JavaScript Variables and Functions
+- Use **camelCase** for variables and functions
+- Use **PascalCase** only for constructors/classes
+- Use **UPPER_SNAKE_CASE** for constants
+- Examples:
+  - Variables: `const userName = 'John'`
+  - Functions: `function calculateTotal() {}`
+  - Constants: `const API_BASE = 'https://...'`
+  - Classes: `class UserProfile {}`
+
+#### HTML Attributes
+- Use **kebab-case** for data attributes: `data-project-id`
+- Use **lowercase** for standard HTML attributes
+
+#### File Names
+- Use **kebab-case** for file names: `change-calculator.js`, `app-config.js`
+- Use **PascalCase** only for component files in component-based frameworks
+
+### Code Organization
+
+#### HTML Structure
+- Use semantic HTML5 elements (`<header>`, `<nav>`, `<main>`, `<section>`, `<article>`, `<footer>`)
+- Maintain consistent indentation (2 spaces)
+- Include proper accessibility attributes (`alt` for images, `aria-label` where needed)
+- Keep HTML structure clean and semantic
+
+#### CSS Organization
+- Group related styles together with comments
+- Use consistent spacing and formatting
+- Follow this order: layout → typography → colors → spacing → effects
+- Use CSS custom properties (variables) for repeated values
+- Example structure:
+  ```css
+  /* Component Name */
+  .component-name {
+    /* Layout */
+    display: flex;
+    /* Typography */
+    font-size: 16px;
+    /* Colors */
+    background-color: #fff;
+    /* Spacing */
+    padding: 20px;
+    /* Effects */
+    transition: all 0.3s;
+  }
+  ```
+
+#### JavaScript Organization
+- Use `const` by default, `let` when reassignment is needed, avoid `var`
+- Group related functionality together
+- Use meaningful variable and function names
+- Add JSDoc comments for complex functions
+- Handle errors appropriately with try-catch blocks
+- Example structure:
+  ```javascript
+  // Constants
+  const API_BASE = 'https://...';
+  
+  // DOM Elements
+  const form = document.getElementById('form');
+  
+  // Functions
+  function handleSubmit(event) {
+    // Implementation
+  }
+  
+  // Event Listeners
+  form.addEventListener('submit', handleSubmit);
+  ```
+
+### Business Rules
+
+#### Portfolio Projects
+- All portfolio projects must be accessible and functional
+- Projects should have clear descriptions
+- External links must use `target="_blank" rel="noopener noreferrer"` for security
+- Project images must have descriptive alt text
+
+#### Work Experience
+- Work experience entries must be accurate and up-to-date
+- Expandable rows should provide detailed information
+- Dates must be in consistent format: "Month YYYY - Present" or "Month YYYY - Month YYYY"
+
+#### Contact Information
+- Contact information must be current and valid
+- Social media links must be verified
+- Email addresses should use `mailto:` protocol
+
+#### Security
+- **NEVER** hardcode passwords or sensitive information in source code
+- Use environment variables or secure configuration for sensitive data
+- Validate all user inputs
+- Sanitize data before displaying to prevent XSS attacks
+
+### Best Practices
+
+#### Performance
+- Optimize images before adding to project
+- Minimize HTTP requests
+- Use lazy loading for images where appropriate
+- Minimize JavaScript and CSS where possible
+
+#### Accessibility
+- Ensure proper color contrast ratios (WCAG AA minimum)
+- Provide alt text for all images
+- Use semantic HTML elements
+- Ensure keyboard navigation works
+- Test with screen readers
+
+#### Browser Compatibility
+- Test in major browsers (Chrome, Firefox, Safari, Edge)
+- Use feature detection, not browser detection
+- Provide fallbacks for modern features
+
+#### Error Handling
+- Always handle API errors gracefully
+- Provide user-friendly error messages
+- Log errors appropriately (avoid console.log in production)
+- Validate inputs before processing
+
+### Version Management
+
+#### Version Format
+- Use Semantic Versioning (SemVer): `MAJOR.MINOR.PATCH`
+- Example: `1.2.3`
+- MAJOR: Breaking changes
+- MINOR: New features (backward compatible)
+- PATCH: Bug fixes (backward compatible)
+
+#### Version Updates
+- Update version in `VERSION` file for each release
+- Create release notes in `docs/release-notes/` directory
+- Commit version changes with message: `chore: bump version to X.Y.Z`
+- Tag releases: `git tag -a vX.Y.Z -m "Release vX.Y.Z"`
+
+### Git Workflow
+
+#### Commit Messages
+- Use conventional commit format:
+  - `feat:` New feature
+  - `fix:` Bug fix
+  - `docs:` Documentation changes
+  - `style:` Code style changes (formatting, etc.)
+  - `refactor:` Code refactoring
+  - `test:` Adding or updating tests
+  - `chore:` Maintenance tasks
+- Format: `type(scope): description`
+- Example: `fix(portfolio): correct navigation scroll offset`
+
+#### Branching
+- `main`: Production-ready code
+- `develop`: Development branch (if using Git Flow)
+- Feature branches: `feature/feature-name`
+- Hotfix branches: `hotfix/issue-description`
+
+#### CI/CD Guidelines
+- Each major change should be committed separately
+- Test changes before committing
+- Update version after confirmed working changes
+- Push to remote after each major change
+- Create release notes for tested and confirmed features
+
+### Documentation
+
+#### Documentation Location
+- All documentation goes in `docs/` folder
+- Release notes in `docs/release-notes/`
+- API documentation in `docs/api/` (if applicable)
+- Architecture/design docs in `docs/architecture/`
+
+#### Code Comments
+- Use comments to explain "why", not "what"
+- Keep comments up-to-date with code changes
+- Remove commented-out code before committing
+- Use JSDoc for JavaScript functions:
+  ```javascript
+  /**
+   * Calculates the total change breakdown for a given amount
+   * @param {number} amount - The amount in ZAR
+   * @returns {Promise<Object>} Promise resolving to change breakdown
+   * @throws {Error} If amount is invalid or API request fails
+   */
+  ```
+
+### Project-Specific Rules
+
+#### ChangeCalculator
+- API endpoint must be configurable
+- Handle API errors gracefully
+- Validate input amounts (non-negative, valid decimal precision)
+- Display results in clear, readable format
+
+#### TempCutWise
+- **CRITICAL**: Remove hardcoded passwords - use secure authentication
+- Input validation required for all dimensions
+- Optimization algorithm should be documented
+- Export functionality must be tested
+
+#### Main Portfolio
+- Navigation must be smooth and accessible
+- All sections must be properly linked
+- Images must be optimized for web
+- Responsive design must work on mobile, tablet, and desktop
+
+### Code Review Checklist
+
+Before committing, ensure:
+- [ ] Code follows naming conventions
+- [ ] No hardcoded sensitive information
+- [ ] Error handling is in place
+- [ ] Code is commented where necessary
+- [ ] No console.log statements in production code
+- [ ] All links are valid and accessible
+- [ ] Images have alt text
+- [ ] Code is formatted consistently
+- [ ] Version is updated if needed
+- [ ] Release notes created for major changes
+
+### AI Assistant Guidelines
+
+When working with AI assistance:
+- **Question unclear requirements** - Don't implement vague or incomplete specifications
+- **Suggest improvements** - Propose better solutions when appropriate
+- **Explain trade-offs** - Discuss pros and cons of different approaches
+- **Validate assumptions** - Confirm understanding before implementing
+- **Follow principles from "The AI-Driven Leader"** - Make informed decisions, not just execute commands
+
+### Anti-Patterns to Avoid
+
+- ❌ Mixing naming conventions (camelCase, snake_case, kebab-case)
+- ❌ Hardcoding configuration values
+- ❌ Ignoring error handling
+- ❌ Committing without testing
+- ❌ Leaving console.log statements
+- ❌ Using inline styles (prefer CSS classes)
+- ❌ Missing alt text on images
+- ❌ Unvalidated user inputs
+- ❌ Security vulnerabilities (XSS, hardcoded secrets)
+
