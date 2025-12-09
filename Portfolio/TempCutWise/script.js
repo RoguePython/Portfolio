@@ -1,15 +1,22 @@
-  // SECURITY NOTE: Client-side password protection has been removed as it provides
-  // no real security (passwords are visible in source code). If authentication is
-  // required, implement proper server-side authentication with:
-  // - Backend API with secure session management
-  // - Environment-based access control (e.g., IP whitelisting, VPN requirement)
-  // - OAuth/SSO integration
-  // - Server-side route protection
-  //
-  // For development/testing purposes, consider:
-  // - Using .htaccess/.htpasswd (Apache) or nginx auth
-  // - Implementing a proper login system with backend validation
-  // - Using environment variables for configuration (never in client-side code)
+  document.addEventListener("DOMContentLoaded", function () {
+    const correctPassword = "KimJongUn123"; // 🔐 Change this to your own password
+    let tries = 3;
+
+    while (tries > 0) {
+      const input = prompt("Enter the password to access this project:");
+      if (input === correctPassword) {
+        break;
+      } else {
+        tries--;
+        if (tries === 0) {
+          alert("Too many failed attempts. Reload to try again.");
+          document.body.innerHTML = "<h1>Access Denied</h1>";
+        } else {
+          alert(`Incorrect password. You have ${tries} attempt(s) left.`);
+        }
+      }
+    }
+  });
 
 
 // script.js
@@ -23,13 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const canvasContainer = document.getElementById("canvas-container");
   const totalWaste = document.getElementById("total-waste");
   const materialUsed = document.getElementById("material-used");
-
-  // Validate required DOM elements
-  if (!materialsList || !cutsList || !addMaterialBtn || !addCutBtn || 
-      !optimizeBtn || !canvasContainer || !totalWaste || !materialUsed) {
-    console.error('Required DOM elements not found. Please check the HTML structure.');
-    return;
-  }
 
   const materials = [];
   const cuts = [];
@@ -73,13 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
     cuts.length = 0;
 
     document.querySelectorAll(".material-item").forEach(div => {
-      const length = parseFloat(div.querySelector(".mat-length")?.value || 0);
-      const width = parseFloat(div.querySelector(".mat-width")?.value || 0);
-      const height = parseFloat(div.querySelector(".mat-height")?.value || 0);
-      const qty = parseInt(div.querySelector(".mat-qty")?.value || 0);
-      
-      if (!isNaN(length) && !isNaN(width) && !isNaN(height) && !isNaN(qty) &&
-          length > 0 && width > 0 && height > 0 && qty > 0) {
+      const length = parseFloat(div.querySelector(".mat-length").value);
+      const width = parseFloat(div.querySelector(".mat-width").value);
+      const height = parseFloat(div.querySelector(".mat-height").value);
+      const qty = parseInt(div.querySelector(".mat-qty").value);
+      if (!isNaN(length) && !isNaN(width) && !isNaN(height) && !isNaN(qty)) {
         for (let i = 0; i < qty; i++) {
           materials.push({ length, width, height });
         }
@@ -87,13 +85,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     document.querySelectorAll(".cut-item").forEach(div => {
-      const length = parseFloat(div.querySelector(".cut-length")?.value || 0);
-      const width = parseFloat(div.querySelector(".cut-width")?.value || 0);
-      const height = parseFloat(div.querySelector(".cut-height")?.value || 0);
-      const qty = parseInt(div.querySelector(".cut-qty")?.value || 0);
-      
-      if (!isNaN(length) && !isNaN(width) && !isNaN(height) && !isNaN(qty) &&
-          length > 0 && width > 0 && height > 0 && qty > 0) {
+      const length = parseFloat(div.querySelector(".cut-length").value);
+      const width = parseFloat(div.querySelector(".cut-width").value);
+      const height = parseFloat(div.querySelector(".cut-height").value);
+      const qty = parseInt(div.querySelector(".cut-qty").value);
+      if (!isNaN(length) && !isNaN(width) && !isNaN(height) && !isNaN(qty)) {
         for (let i = 0; i < qty; i++) {
           cuts.push({ length, width, height });
         }
@@ -176,31 +172,9 @@ document.addEventListener("DOMContentLoaded", () => {
   addMaterialBtn.addEventListener("click", createMaterialInput);
   addCutBtn.addEventListener("click", createCutInput);
   optimizeBtn.addEventListener("click", () => {
-    try {
-      collectData();
-      
-      if (materials.length === 0) {
-        alert('Please add at least one material.');
-        return;
-      }
-      
-      if (cuts.length === 0) {
-        alert('Please add at least one cut requirement.');
-        return;
-      }
-      
-      const results = simpleOptimize(materials, cuts);
-      
-      if (results.length === 0) {
-        alert('No valid optimization found. Please check your material and cut dimensions.');
-        return;
-      }
-      
-      renderResults(results);
-    } catch (error) {
-      console.error('Error during optimization:', error);
-      alert('An error occurred during optimization. Please check the console for details.');
-    }
+    collectData();
+    const results = simpleOptimize(materials, cuts);
+    renderResults(results);
   });
 
   // Add one default row
