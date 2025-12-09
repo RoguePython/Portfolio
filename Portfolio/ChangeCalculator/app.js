@@ -1,5 +1,6 @@
 const API_BASE = "https://change-calculator-benj.azurewebsites.net/api";
 
+// DOM Elements - validate they exist
 const form = document.getElementById('form');
 const amountInput = document.getElementById('amount');
 const errorBox = document.getElementById('error');
@@ -9,6 +10,11 @@ const copyBtn = document.getElementById('copyBtn');
 const raw = document.getElementById('raw');
 const btn = document.getElementById('btn');
 
+// Validate required DOM elements exist
+if (!form || !amountInput || !errorBox || !resultBox || !tableBody || !copyBtn || !raw || !btn) {
+  console.error('Required DOM elements not found. Please check the HTML structure.');
+}
+
 function showError(msg) {
   errorBox.textContent = msg;
   errorBox.hidden = false;
@@ -16,7 +22,8 @@ function showError(msg) {
 }
 function clearError() { errorBox.hidden = true; }
 
-form.addEventListener('submit', async (e) => {
+if (form) {
+  form.addEventListener('submit', async (e) => {
   e.preventDefault();
   clearError();
   btn.disabled = true;
@@ -35,10 +42,25 @@ form.addEventListener('submit', async (e) => {
       body: JSON.stringify({ amount })
     });
 
-    const data = await res.json();
-
     if (!res.ok) {
-      showError(data?.error || 'Request failed.');
+      let errorMessage = 'Request failed.';
+      try {
+        const errorData = await res.json();
+        errorMessage = errorData?.error || errorMessage;
+      } catch (parseError) {
+        errorMessage = `Server error: ${res.status} ${res.statusText}`;
+      }
+      showError(errorMessage);
+      btn.disabled = false;
+      return;
+    }
+
+    let data;
+    try {
+      data = await res.json();
+    } catch (parseError) {
+      showError('Invalid response from server. Please try again.');
+      btn.disabled = false;
       return;
     }
 
@@ -54,15 +76,28 @@ form.addEventListener('submit', async (e) => {
   } catch (err) {
     showError('Network error. Check your connection and API URL.');
   } finally {
-    btn.disabled = false;
+    if (btn) btn.disabled = false;
   }
-});
+  });
+}
 
-copyBtn.addEventListener('click', async () => {
-  try {
-    const json = raw.textContent.replace(/^JSON:\s*/, '');
-    await navigator.clipboard.writeText(json);
-    copyBtn.textContent = 'Copied!';
-    setTimeout(() => copyBtn.textContent = 'Copy JSON', 1200);
-  } catch { }
-});
+if (copyBtn && raw) {
+  copyBtn.addEventListener('click', async () => {
+    try {
+      const json = raw.textContent.replace(/^JSON:\s*/, '');
+      if (!json) {
+        console.warn('No JSON data to copy');
+        return;
+      }
+      await navigator.clipboard.writeText(json);
+      copyBtn.textContent = 'Copied!';
+      setTimeout(() => {
+        if (copyBtn) copyBtn.textContent = 'Copy JSON';
+      }, 1200);
+    } catch (err) {
+      console.error('Failed to copy to clipboard:', err);
+      // Fallback: show the JSON in an alert or console
+      console.log('JSON data:', raw.textContent.replace(/^JSON:\s*/, ''));
+    }
+  });
+}
