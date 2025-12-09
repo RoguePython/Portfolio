@@ -134,7 +134,7 @@ a {
     justify-content: space-between;
 }
 
-.left_block {
+.left-block {
     padding: 50px;
     min-width: 35%;
     margin: auto;
@@ -146,7 +146,7 @@ a {
     border: rgb(75, 75, 75) solid 1px; 
 }
 
-.left_block b {
+.left-block b {
     font-size: 32px;
 }
 
@@ -185,7 +185,7 @@ a {
     }
 }
 
-.right_block {
+.right-block {
     padding: 50px;
     width: 48%;
     margin: auto;
@@ -197,21 +197,21 @@ a {
     border: rgb(75, 75, 75) solid 1px;  
 }
 
-.skills_technologies {
+.skills-technologies {
     padding-top: 15px;
 }
 
-.skills_technologies b {
+.skills-technologies b {
     padding-left: 50px;
 }
 
-.skills_technologies ul li{
+.skills-technologies ul li{
     font-size: 25px;
     padding-top: 20px ;
     list-style-type: none;
 }
 
-.skills_technologies hr {
+.skills-technologies hr {
     margin: 0;
     padding: 0;
     border: none;
@@ -220,7 +220,7 @@ a {
 
 /* Work Experience */
 
-.Work_Experience {
+.work-experience {
     padding: 20px;
     background-color: rgb(26,26,26);
     min-height: 400px;
@@ -229,7 +229,7 @@ a {
     position: relative;
 }
 
-.Work_Experience_Table {
+.work-experience-table {
     width: 80%;
     border-collapse: collapse;
     color: white;
@@ -239,24 +239,24 @@ a {
     margin: 0 auto;
 }
 
-.Work_Experience_Table th, .Work_Experience_Table td {
+.work-experience-table th, .work-experience-table td {
     border: 1px solid rgb(75, 75, 75);
     padding: 10px;
     text-align: left;
 }
 
-.Work_Experience_Table th {
+.work-experience-table th {
     background-color: black;
     text-decoration: Bold;
     border: none;
 }
 
-.Work_Experience_Table tr {
+.work-experience-table tr {
     cursor: pointer;
     transition: background-color 0.5s;
 }
 
-.Work_Experience_Table tr:hover {
+.work-experience-table tr:hover {
     background-color: rgb(31,45,57);
 }
 
@@ -276,7 +276,7 @@ a {
 
 /* Portfolio */
 
-.Portfolio {
+.portfolio {
     text-align: center;
     background-image: linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, 50%)), url("html1.png");
     background-size: cover;
@@ -374,38 +374,38 @@ a {
 
 /* Media query for screen widths 1400-1800px */
 @media (max-width: 1800px) {
-    .Get_In_Touch {
+    .get-in-touch {
         width: 30%;
     }
 }
 
 /* Media query for screen widths 1400px and below */
 @media (max-width: 1400px) {
-    .Get_In_Touch {
+    .get-in-touch {
         width: 40%;
     }
 }
 
-.Get_In_Touch p {
+.get-in-touch p {
     display: flex;
     align-items: center;
     padding: 10px 0;
     color: white;
 }
 
-.Get_In_Touch img {
+.get-in-touch img {
     padding-right: 25px;
     height: 50px;
 }
 
-.Social_Media {
+.social-media {
     text-align: center;
 }
 
-.Social_Media img {
+.social-media img {
     transition: transform 0.3s ease;
 }
 
-.Social_Media img:hover {
+.social-media img:hover {
     transform: scale(1.5);
 }
