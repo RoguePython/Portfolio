@@ -85,6 +85,8 @@ a {
     font-weight: 600;
     text-shadow: 5px 5px black;
     min-width: 280px;
+    padding-top: 75px;
+    box-sizing: border-box;
 }
 
 .home span {
@@ -408,4 +410,361 @@ a {
 
 .Social_Media img:hover {
     transform: scale(1.5);
+}
+
+/* Mobile and Tablet Responsive Styles */
+
+/* Tablet styles (768px to 1024px) */
+@media (max-width: 1024px) {
+    .toolbar {
+        font-size: 28px;
+        height: 65px;
+        padding-left: 3%;
+    }
+
+    .toolbar a {
+        font-size: 18px;
+        margin: 8px;
+    }
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .home {
+        height: 800px;
+        font-size: 28px;
+    }
+
+    .about-me {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .left_block {
+        width: 90%;
+        min-width: auto;
+        margin-bottom: 30px;
+        padding: 30px;
+        font-size: 22px;
+    }
+
+    .right_block {
+        width: 90%;
+        padding: 30px;
+        font-size: 20px;
+    }
+
+    .Work_Experience_Table {
+        width: 95%;
+        font-size: 18px;
+    }
+
+    .Get_In_Touch {
+        width: 50%;
+    }
+}
+
+/* Mobile styles (up to 768px) */
+@media (max-width: 768px) {
+    .toolbar {
+        font-size: 20px;
+        height: auto;
+        min-height: 60px;
+        flex-direction: column;
+        padding: 10px 3%;
+    }
+
+    .Title {
+        margin-bottom: 10px;
+    }
+
+    .spacer {
+        display: none;
+    }
+
+    .navbar {
+        flex-direction: column;
+        width: 100%;
+        padding: 0;
+        gap: 5px;
+    }
+
+    .navbar a {
+        font-size: 16px;
+        margin: 5px 0;
+        padding: 5px;
+    }
+
+    .home {
+        height: 600px;
+        font-size: 22px;
+        padding-top: 80px;
+    }
+
+    .home-content-container h1 {
+        font-size: 32px;
+    }
+
+    .home-content-container h3 {
+        font-size: 18px;
+    }
+
+    .about-me {
+        flex-direction: column;
+        padding: 20px 10px;
+        min-height: auto;
+    }
+
+    .left_block {
+        width: 95%;
+        min-width: auto;
+        margin-bottom: 20px;
+        padding: 20px;
+        font-size: 18px;
+        border-radius: 25px;
+    }
+
+    .left_block b {
+        font-size: 22px;
+    }
+
+    .selfpic {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .selfpic img {
+        height: 250px;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .Selfpic_Text {
+        font-size: 16px;
+    }
+
+    .skills_technologies {
+        padding-top: 10px;
+    }
+
+    .skills_technologies b {
+        padding-left: 0;
+        font-size: 20px;
+    }
+
+    .skills_technologies ul {
+        padding: 0px 20px;
+    }
+
+    .skills_technologies ul li {
+        font-size: 18px;
+        padding-top: 15px;
+    }
+
+    .right_block {
+        width: 95%;
+        padding: 20px;
+        font-size: 16px;
+        border-radius: 25px;
+    }
+
+    .right_block h1 {
+        font-size: 32px;
+    }
+
+    .Work_Experience {
+        padding: 10px;
+    }
+
+    .Work_Experience h1 {
+        font-size: 32px;
+    }
+
+    .Work_Experience {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .Work_Experience_Table {
+        width: 100%;
+        min-width: 600px;
+        font-size: 14px;
+    }
+
+    .Work_Experience_Table th,
+    .Work_Experience_Table td {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .details-row td {
+        padding: 10px;
+    }
+
+    .Portfolio {
+        padding: 30px 10px 100px 10px;
+    }
+
+    .Portfolio h1 {
+        font-size: 32px;
+    }
+
+    .project-wrapper {
+        gap: 15px;
+        padding: 0 10px;
+    }
+
+    .project-container {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .project-image img {
+        height: 200px;
+    }
+
+    .project-link {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .contact {
+        padding: 50px 0;
+    }
+
+    .contact h1 {
+        font-size: 32px;
+    }
+
+    .Get_In_Touch {
+        width: 90%;
+        padding: 20px;
+        font-size: 18px;
+        border-radius: 25px;
+    }
+
+    .Get_In_Touch p {
+        font-size: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .Get_In_Touch img {
+        height: 40px;
+        padding-right: 15px;
+    }
+
+    .Social_Media {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .Social_Media a {
+        display: inline-block;
+    }
+
+    .Social_Media img {
+        height: 40px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+}
+
+/* Small mobile devices (up to 480px) */
+@media (max-width: 480px) {
+    .toolbar {
+        font-size: 18px;
+        padding: 8px 2%;
+    }
+
+    .navbar a {
+        font-size: 14px;
+    }
+
+    .home {
+        height: 500px;
+        font-size: 18px;
+        padding-top: 70px;
+    }
+
+    .home-content-container h1 {
+        font-size: 24px;
+    }
+
+    .home-content-container h3 {
+        font-size: 16px;
+    }
+
+    .left_block {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .left_block b {
+        font-size: 18px;
+    }
+
+    .selfpic img {
+        height: 200px;
+    }
+
+    .Selfpic_Text {
+        font-size: 14px;
+    }
+
+    .skills_technologies ul li {
+        font-size: 16px;
+    }
+
+    .right_block {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    .right_block h1 {
+        font-size: 28px;
+    }
+
+    .Work_Experience_Table {
+        font-size: 12px;
+        min-width: 550px;
+    }
+
+    .Work_Experience_Table th,
+    .Work_Experience_Table td {
+        padding: 6px;
+        font-size: 11px;
+    }
+
+    .Portfolio h1 {
+        font-size: 28px;
+    }
+
+    .project-container {
+        max-width: 100%;
+    }
+
+    .contact h1 {
+        font-size: 28px;
+    }
+
+    .Get_In_Touch {
+        width: 95%;
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    .Get_In_Touch p {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 28px;
+    }
 }
