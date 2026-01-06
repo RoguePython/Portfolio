@@ -452,18 +452,22 @@ a {
     box-shadow: var(--shadow-sm);
 }
 
+.details-row {
+    display: none;
+}
+
+.details-row.active-row {
+    display: table-row;
+}
+
 .details-row td{
     padding: 0 6%;
 }
 
 .details-list {
-    display: none;
+    display: block;
     margin-top: 10px;
     padding-left: 20px;
-}
-
-.active-row .details-list {
-    display: block;
 }
 
 /* Portfolio */
