@@ -1,3 +1,26 @@
+// Hamburger menu toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.querySelector('.hamburger');
+    const navbar = document.querySelector('.navbar');
+    
+    if (hamburger && navbar) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navbar.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link (mobile)
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    hamburger.classList.remove('active');
+                    navbar.classList.remove('active');
+                }
+            });
+        });
+    }
+});
+
 // Smooth scrolling to main components (Home, About me, Work experience etc.)
 document.addEventListener('DOMContentLoaded', function() { 
     document.querySelectorAll('.navbar a').forEach(anchor => {
@@ -8,7 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const targetElement = document.getElementById(targetId);
 
             if (targetElement) {
-                const offset = 50; // Adjust this value to set how much higher you want to scroll
+                // Use smaller offset on mobile to match reduced toolbar height
+                const offset = window.innerWidth <= 480 ? 40 : (window.innerWidth <= 768 ? 45 : 50);
                 const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - offset;
 
                 window.scrollTo({

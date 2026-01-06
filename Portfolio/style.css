@@ -1,3 +1,9 @@
+html {
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 body {
     top: 0;
     left: 0;
@@ -5,6 +11,13 @@ body {
     margin: 0;
     display: relative;
     font-family: verdana;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 h1 {
@@ -40,10 +53,13 @@ a {
     background-color: black;
     color: white;
     padding-left: 6%;
+    padding-right: 0;
     width: 100%;
+    max-width: 100vw;
     display: flex;
     align-items: center;
     z-index: 1000; /* Ensures toolbar always stays on top    */
+    box-sizing: border-box;
 }
 
 .title {
@@ -69,6 +85,41 @@ a {
 .navbar {
     display: flex;
     padding: 0 10%;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1001;
+    width: 30px;
+    height: 30px;
+    justify-content: space-around;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
 }
 
 /* Homepage */
@@ -467,39 +518,80 @@ a {
 
 /* Mobile styles (up to 768px) */
 @media (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+
     .toolbar {
-        font-size: 20px;
-        height: auto;
-        min-height: 60px;
-        flex-direction: column;
-        padding: 10px 3%;
+        font-size: 18px;
+        height: 45px;
+        min-height: 45px;
+        flex-direction: row;
+        padding: 5px 3%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        align-items: center;
     }
 
     .Title {
-        margin-bottom: 10px;
+        margin-bottom: 0;
+        font-size: 18px;
+        line-height: 1.2;
     }
 
     .spacer {
-        display: none;
+        flex: 1 1 auto;
+    }
+
+    .hamburger {
+        display: flex;
+        margin-right: 10px;
     }
 
     .navbar {
+        position: fixed;
+        top: 45px;
+        left: 0;
+        right: 0;
+        background-color: black;
         flex-direction: column;
         width: 100%;
-        padding: 0;
-        gap: 5px;
+        padding: 15px 0;
+        gap: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .navbar.active {
+        max-height: 400px;
+        padding: 15px 0;
     }
 
     .navbar a {
         font-size: 16px;
-        margin: 5px 0;
-        padding: 5px;
+        margin: 0;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px solid rgb(50, 50, 50);
+        line-height: 1.4;
+        box-sizing: border-box;
+    }
+
+    .navbar a:last-child {
+        border-bottom: none;
     }
 
     .home {
         height: 600px;
         font-size: 22px;
-        padding-top: 80px;
+        padding-top: 45px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .home-content-container h1 {
@@ -514,15 +606,20 @@ a {
         flex-direction: column;
         padding: 20px 10px;
         min-height: auto;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .left_block {
         width: 95%;
         min-width: auto;
+        max-width: 100%;
         margin-bottom: 20px;
         padding: 20px;
         font-size: 18px;
         border-radius: 25px;
+        box-sizing: border-box;
     }
 
     .left_block b {
@@ -564,9 +661,11 @@ a {
 
     .right_block {
         width: 95%;
+        max-width: 100%;
         padding: 20px;
         font-size: 16px;
         border-radius: 25px;
+        box-sizing: border-box;
     }
 
     .right_block h1 {
@@ -575,15 +674,15 @@ a {
 
     .Work_Experience {
         padding: 10px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     .Work_Experience h1 {
         font-size: 32px;
-    }
-
-    .Work_Experience {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
     }
 
     .Work_Experience_Table {
@@ -604,6 +703,9 @@ a {
 
     .Portfolio {
         padding: 30px 10px 100px 10px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .Portfolio h1 {
@@ -613,6 +715,9 @@ a {
     .project-wrapper {
         gap: 15px;
         padding: 0 10px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .project-container {
@@ -631,6 +736,9 @@ a {
 
     .contact {
         padding: 50px 0;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .contact h1 {
@@ -679,18 +787,36 @@ a {
 /* Small mobile devices (up to 480px) */
 @media (max-width: 480px) {
     .toolbar {
-        font-size: 18px;
-        padding: 8px 2%;
+        font-size: 16px;
+        height: 40px;
+        min-height: 40px;
+        padding: 4px 2%;
+    }
+
+    .Title {
+        font-size: 16px;
+        line-height: 1.2;
+    }
+
+    .navbar {
+        top: 40px;
+        padding: 12px 0;
+    }
+
+    .navbar.active {
+        padding: 12px 0;
     }
 
     .navbar a {
         font-size: 14px;
+        padding: 10px 15px;
+        line-height: 1.4;
     }
 
     .home {
         height: 500px;
         font-size: 18px;
-        padding-top: 70px;
+        padding-top: 40px;
     }
 
     .home-content-container h1 {
