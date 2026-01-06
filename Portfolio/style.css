@@ -707,8 +707,6 @@ a {
     .about-me {
         flex-direction: column;
         padding: 20px;
-        margin-top: 15px;
-        margin-bottom: 15px;
     }
     
     .project-wrapper {
@@ -834,8 +832,6 @@ a {
         width: 100%;
         max-width: 100vw;
         box-sizing: border-box;
-        margin-top: 15px;
-        margin-bottom: 15px;
     }
 
     .left_block {
