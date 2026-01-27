@@ -1,13 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="description" content="Benjamin Joubert - Junior Software Developer Portfolio. Web Developer, Software Developer, and Game Developer based in Bloemfontein, South Africa.">
+    <meta name="keywords" content="Benjamin Joubert, Software Developer, Web Developer, Portfolio, South Africa, Bloemfontein">
+    <meta name="author" content="Benjamin Joubert">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Benjamin Joubert - Portfolio">
+    <meta property="og:description" content="Junior Software Developer Portfolio - Web Developer, Software Developer, and Game Developer">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Benjamin Joubert - Portfolio">
+    <meta name="twitter:description" content="Junior Software Developer Portfolio">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    <title>Benjamin Joubert - Portfolio | Software Developer</title>
+    <script src="app.js" defer></script>
 </head>
+
 <body>
-    <script>
-        window.location.href="./Portfolio/"
-    </script>
+    <a href="#Home" class="skip-link">Skip to main content</a>
+    
+    <header class="toolbar" role="banner">
+        <span class="Title">Benjamin Joubert</span>
+        <div class="spacer"></div>
+        <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navbar">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+            <a href="#Home">Home</a>
+            <a href="#About-me">About me</a>
+            <a href="#Work-Experience">Work Experience</a>
+            <a href="#Portfolio">Portfolio</a>
+            <a href="#Contact">Contact Me</a>
+        </nav>
+    </header>
+
+    <main>
+    <section class="home" id="Home" aria-label="Home section">
+        <div class="home-content-container">
+            <h3>Hello World!</h3>
+            <h1>I am Benjamin Joubert</h1>
+            <h3>I'm a <span class="typing-text"></span><span class="typing-cursor">|</span></h3>
+        </div>
+    </section>
+
+    <section class="about-me" id="About-me" aria-label="About me section">
+        <div class="left_block">
+            <div class="selfpic">
+                <img src="assets/images/SelfPic.jpg" alt="Me standing next to the love of my life" loading="lazy">
+                <div class="Selfpic_Text">
+                    <b>Name: </b> <br>Benjamin Joubert <br>
+                    <b>Profile: </b> <br>Junior Developer <br>
+                    <b>Phone: </b> <br>+27 71 632 2140 <br>
+                    <b>E-mail: </b> <br>bendriejoubert@gmail.com <br>
+                </div>
+            </div>
+
+            <div class="skills_technologies">
+                <b>Skills and Technologies</b>
+                <ul>
+                    <li>JavaScript</li>
+                    <hr>
+                    <li>HTML5 & CSS3</li>
+                    <hr>
+                    <li>C# & .NET Core</li>
+                    <hr>
+                    <li>Expo EAS (React Native)</li>
+                    <hr>
+                    <li>Delphi</li>
+                    <hr>
+                    <li>RESTful API Development</li>
+                    <hr>
+                    <li>SQL & Database Design</li>
+                    <hr>
+                    <li>Git & Version Control</li>
+                    <hr>
+                    <li>Agile/Scrum Methodologies</li>
+                    <hr>
+                    <li>Responsive Web Design</li>
+                    <hr>
+                    <li>Code Review & Best Practices</li>
+                    <hr>
+                    <li>Problem-Solving & Debugging</li>
+                    <hr>
+                    <li>Team Collaboration</li>
+                    <hr>
+                </ul>
+            </div>
+        </div>
+        <div class="right_block">
+            <h1>About Me</h1>
+            <br><br>
+            Welcome to my portfolio! My name is Benjamin, and I am an IT professional based in Bloemfontein with a deep
+            passion for technology and programming. I completed my National Senior Certificate at Jim Fouchè Hoërskool,
+            where I built a solid foundation in Computer Applications Technology and Information Technology—earning the
+            highest score in Computer Applications Technology in 2021 and the second highest in 2022.
+            <br><br>
+            I currently work as a Junior Software Developer at Weighsoft, a dynamic branch of the Wow Scales family,
+            where I am constantly expanding my technical skills and contributing to innovative projects. In addition, I
+            manage Dancakes Coffee & Bakery on weekends, overseeing daily operations and ensuring smooth service
+            delivery. This role allows me to further refine my leadership and organizational skills while independently
+            handling challenges and delivering excellent results.
+            <br><br>
+            My short-term goal is to continue developing my coding expertise and make meaningful contributions to
+            forward-thinking IT initiatives. In the long term, I aspire to grow within an organization that values
+            dedication, collaboration, and continuous learning.
+            <br><br>
+            Thank you for visiting my portfolio. I look forward to connecting with like-minded professionals and
+            exploring exciting opportunities. Please feel free to explore my projects and reach out if you have any
+            questions or collaboration ideas.
+        </div>
+    </section>
+
+    <section class="Work_Experience" id="Work-Experience" aria-label="Work Experience section">
+        <h1>Work Experience</h1>
+        <table class="Work_Experience_Table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Full-/Part time</th>
+                    <th>Company</th>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="expandable-row">
+                    <td>November 2024 - Present</td>
+                    <td>Full Time</td>
+                    <td>Weighsoft/Wow Scales</td>
+                    <td>Junior Software Developer</td>
+                </tr>
+                <tr class="details-row">
+                    <td colspan="4">
+                        <ul class="details-list">
+                            <li>Software Development: Design, develop, and maintain high-quality code for innovative
+                                projects.</li>
+                            <li>Agile Practices: Actively participate in daily stand-ups, sprint planning, and code
+                                reviews.</li>
+                            <li>Problem-Solving: Tackle technical challenges with creative and effective solutions.</li>
+                            <li>Collaboration: Work closely with cross-functional teams to achieve project milestones.
+                            </li>
+                            <li>Continuous Improvement: Embrace emerging technologies and best practices to optimize
+                                performance.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="expandable-row">
+                    <td>July 2023 - Present</td>
+                    <td>Part Time</td>
+                    <td>Dancakes Coffee & Bakery</td>
+                    <td>General Manager</td>
+                </tr>
+                <tr class="details-row">
+                    <td colspan="4">
+                        <ul class="details-list">
+                            <li>Problem-Solving: Innovate solutions and resolve conflicts effectively.</li>
+                            <li>Time Management: Prioritize tasks and delegate responsibilities efficiently.</li>
+                            <li>Communication: Communicate clearly and listen actively.</li>
+                            <li>Adaptability: Remain flexible and resilient in the face of change.</li>
+                            <li>Team Building: Encourage collaboration and support team growth.</li>
+                            <li>Detail-Oriented: Paying close attention to ensure all elements are functioning
+                                correctly.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="expandable-row">
+                    <td>January 2016 - December 2021</td>
+                    <td>Part-Time</td>
+                    <td>VEK Kerugma</td>
+                    <td>Church Stage-Crew Volunteer</td>
+                </tr>
+                <tr class="details-row">
+                    <td colspan="4">
+                        <ul class="details-list">
+                            <li>Reliability: Being dependable in managing and maintaining technical equipment.</li>
+                            <li>Quick Problem-Solving: Addressing and resolving technical issues promptly.</li>
+                            <li>Technical Proficiency: Basic understanding of sound systems, projectors, and other
+                                church equipment.</li>
+                            <li>Patience: Remaining calm and composed when dealing with technical difficulties or
+                                last-minute changes.</li>
+                            <li>Willingness to Learn: Eagerness to pick up new skills and adapt to different
+                                technologies and church needs.</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr class="expandable-row">
+                    <td>January 2018 - Present</td>
+                    <td>Part-Time</td>
+                    <td>Bloemfontein</td>
+                    <td>House- and Pet-Sitting</td>
+                </tr>
+                <tr class="details-row">
+                    <td colspan="4">
+                        <ul class="details-list">
+                            <li>Attention to Detail: Monitoring the home and pets closely for any issues or changes.
+                            </li>
+                            <li>Pet Care Knowledge: Understanding basic pet care routines and needs, such as feeding,
+                                walking, and grooming.</li>
+                            <li>Problem-Solving: Handling unexpected situations, like minor repairs or pet health
+                                concerns, calmly and effectively.</li>
+                            <li>Communication: Keeping the homeowner informed about the home and pets' well-being
+                                regularly.</li>
+                            <li>Trustworthiness: Being reliable and honest, with the homeowner's trust in mind.</li>
+                            <li>Responsibility: Ensuring the safety and security of the home and pets.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="Portfolio" id="Portfolio" aria-label="Portfolio section">
+        <h1>Portfolio</h1>
+        <div class="project-wrapper">
+            <!-- Project Portfolio -->
+            <div class="project-container">
+                <div class="project-image">
+                    <img src="assets/images/html1.png" alt="Portfolio Project" loading="lazy">
+                    <a href="#Home" class="project-link">View Project</a>
+                </div>
+                <div class="project-info">
+                    <h2>Portfolio</h2>
+                    <p>My own portfolio website</p>
+                </div>
+            </div>
+
+            <!-- Project Resume -->
+            <div class="project-container">
+                <div class="project-image">
+                    <img src="assets/images/Resume.PNG" alt="My Resume" loading="lazy">
+                    <a href="Benjamin Joubert Resume.pdf" class="project-link">View Project</a>
+                    <!-- Link to Resume PDF -->
+                </div>
+                <div class="project-info">
+                    <h2>My Resume</h2>
+                    <p>My resume in pdf format</p>
+                </div>
+            </div>
+
+            <!-- Project Dancakes -->
+            <div class="project-container">
+                <div class="project-image">
+                    <img src="assets/images/mini-milktarts.jpg" alt="Dancakes National Milktart Day" loading="lazy">
+                    <a href="https://dancakesza.com/" class="project-link">View Project</a> <!-- Link to Dancakes -->
+                </div>
+                <div class="project-info">
+                    <h2>Dancakes Website</h2>
+                    <p>National Milktart Day</p>
+                </div>
+            </div>
+
+            <!-- ChangeCalculator -->
+            <div class="project-container">
+                <div class="project-image">
+                    <img src="assets/images/change-calculator.png" alt="ChangeCalculator" loading="lazy">
+                    <a href="ChangeCalculator/" class="project-link">View Project</a> <!-- Link to ChangeCalculator -->
+                </div>
+                <div class="project-info">
+                    <h2>ChangeCalculator</h2>
+                    <p>Small C# .NET Core Web API</p>
+                </div>
+            </div>
+
+            <!-- Cafe Chaos -->
+            <div class="project-container">
+                <div class="project-image">
+                    <img src="assets/images/cafe_chaos.png" alt="Cute Alien" loading="lazy">
+                    <a href="#Portfolio" class="project-link">Work in Progress...</a>
+                </div>
+                <div class="project-info">
+                    <h2>Cafe Chaos</h2>
+                    <p>Cozy, but chaotic game</p>
+                </div>
+            </div>
+
+            <!-- Cut Wise -->
+            <div class="project-container">
+                <div class="project-image">
+                    <img src="assets/images/Coming-soon.jpeg" alt="Coming Soon" loading="lazy">
+                    <a href="TempCutWise/" class="project-link">Work in Progress...</a>
+                </div>
+                <div class="project-info">
+                    <h2>Cut Wise</h2>
+                    <p>Designed for Engineers</p>
+                </div>
+            </div>
+
+            <!-- Project Coming Soon -->
+            <div class="project-container">
+                <div class="project-image">
+                    <img src="assets/images/Coming-soon.jpeg" alt="Coming soon" loading="lazy">
+                    <!-- No href attached, cuz no file if it is coming soon, duh -->
+                </div>
+                <div class="project-info">
+                    <h2>Coming soon</h2>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="Contact" aria-label="Contact section">
+        <h1>Contact Me</h1>
+        <div class="Get_In_Touch">
+            <p><img src="assets/images/location.png" alt="Location" loading="lazy">Bloemfontein, Free-State (South Africa)</p>
+            <p><img src="assets/images/phone.png" alt="Phone" loading="lazy">+27 71 632 2140</p>
+            <p><img src="assets/images/mail.png" alt="Mail" loading="lazy"><a href="mailto:bendriejoubert@gmail.com">bendriejoubert@gmail.com</a></p>
+
+            <div class="Social_Media">
+                <a href="https://www.linkedin.com/in/benjamin-joubert-00bba7263/" aria-label="LinkedIn Profile"><img src="assets/images/linkedin.png" alt="LinkedIn" loading="lazy"></a>
+                <a href="https://github.com/RoguePython" aria-label="GitHub Profile"><img src="assets/images/github.png" alt="Github" loading="lazy"></a>
+                <a href="mailto:bendriejoubert@gmail.com" aria-label="Send Email"><img src="assets/images/mail.png" alt="Mail" loading="lazy"></a>
+                <a href="https://wa.me/+27716322140" aria-label="WhatsApp"><img src="assets/images/whatsapp.png" alt="Whatsapp" loading="lazy"></a>
+                <a href="https://www.instagram.com/benjii_joubert/" aria-label="Instagram Profile"><img src="assets/images/instagram.png" alt="Instagram" loading="lazy"></a>
+                <a href="https://steamcommunity.com/profiles/76561198872772953/" aria-label="Steam Profile"><img src="assets/images/steam.png" alt="Steam" loading="lazy"></a>
+                <a href="https://www.facebook.com/BendrieJoubert/" aria-label="Facebook Profile"><img src="assets/images/facebook.png" alt="Facebook" loading="lazy"></a>
+            </div>
+        </div>
+    </section>
+    </main>
 </body>
+
 </html>
