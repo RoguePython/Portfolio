@@ -188,7 +188,7 @@ a {
 /* Homepage */
 
 .home {
-    background-image: url("assets/images/html1.png");
+    background-color: var(--secondary-bg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -207,6 +207,27 @@ a {
     overflow: hidden;
 }
 
+.home::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("assets/images/html1.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.home.bg-loaded::after {
+    opacity: 1;
+}
+
 .home::before {
     content: '';
     position: absolute;
@@ -219,7 +240,7 @@ a {
         rgba(0, 0, 0, 0.25) 20%,
         rgb(31, 45, 57) 100%);
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
 }
 
 .home-content-container {
@@ -474,12 +495,52 @@ a {
 
 .Portfolio {
     text-align: center;
-    background-image: linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, 50%)), url("assets/images/html1.png");
+    background-color: var(--primary-bg);
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     height: auto;
     padding: 50px 0 200px 0;
+    position: relative;
+}
+
+.Portfolio::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("assets/images/html1.png");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.Portfolio.bg-loaded::after {
+    opacity: 1;
+}
+
+.Portfolio > h1,
+.Portfolio > .project-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+.Portfolio::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 50%), rgba(0, 0, 0, 50%));
+    pointer-events: none;
+    z-index: 1;
 }
 
 .project-wrapper {
