@@ -41,8 +41,19 @@ function typeWriter(element, words, typingSpeed = 100, deletingSpeed = 50, pause
     type();
 }
 
+// Preload hero/portfolio background image and add .bg-loaded when ready (smooth fade-in)
+function initBackgroundPreload() {
+    var img = new Image();
+    img.onload = function() {
+        document.querySelector('.home')?.classList.add('bg-loaded');
+        document.querySelector('.Portfolio')?.classList.add('bg-loaded');
+    };
+    img.src = 'assets/images/html1.png';
+}
+
 // Consolidated DOMContentLoaded - All initialization in one place
 document.addEventListener('DOMContentLoaded', function() {
+    initBackgroundPreload();
     // Initialize typing animation
     const typingElement = document.querySelector('.typing-text');
     if (typingElement) {
