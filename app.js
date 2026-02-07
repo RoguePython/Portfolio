@@ -121,9 +121,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (isVisible) {
                 detailsRow.classList.remove('active-row');
+                this.classList.remove('expanded');
                 this.setAttribute('aria-expanded', 'false');
             } else {
                 detailsRow.classList.add('active-row');
+                this.classList.add('expanded');
                 this.setAttribute('aria-expanded', 'true');
             }
         });

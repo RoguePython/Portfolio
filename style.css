@@ -473,22 +473,117 @@ a {
     box-shadow: var(--shadow-sm);
 }
 
+/* Expandable row chevron indicator */
+.expandable-row td:last-child {
+    position: relative;
+    padding-right: 30px;
+}
+
+.expandable-row td:last-child::after {
+    content: '';
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--text-secondary);
+    border-bottom: 2px solid var(--text-secondary);
+    transform: translateY(-60%) rotate(45deg);
+    transition: transform var(--transition-normal), border-color var(--transition-normal);
+}
+
+.expandable-row.expanded td:last-child::after {
+    transform: translateY(-30%) rotate(-135deg);
+    border-color: var(--accent-color);
+}
+
+.expandable-row:hover td:last-child::after {
+    border-color: var(--accent-color);
+}
+
+/* Details row — always rendered, inner content animates */
 .details-row {
-    display: none;
+    cursor: default;
 }
 
-.details-row.active-row {
-    display: table-row;
+.details-row:hover {
+    background-color: transparent !important;
+    transform: none !important;
+    box-shadow: none !important;
 }
 
-.details-row td{
+.details-row td {
+    padding: 0 !important;
+    border: none !important;
+}
+
+.details-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
     padding: 0 6%;
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--accent-color);
+    border-radius: 0 8px 8px 0;
+    margin: 0 10px;
 }
 
+.details-row.active-row .details-content {
+    max-height: 600px;
+    opacity: 1;
+    padding: 20px 6%;
+    margin: 8px 10px;
+}
+
+/* Details title */
+.details-title {
+    margin: 0 0 14px 0;
+    padding: 0 0 10px 0;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    letter-spacing: 0.3px;
+}
+
+.details-company {
+    font-weight: 400;
+    color: var(--text-secondary);
+    font-size: 18px;
+}
+
+/* Details list */
 .details-list {
     display: block;
-    margin-top: 10px;
+    margin: 0;
     padding-left: 20px;
+    list-style-type: none;
+}
+
+.details-list li {
+    padding: 6px 0;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 16px;
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+.details-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 14px;
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+}
+
+.details-list li strong {
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
 /* Portfolio */
@@ -794,6 +889,18 @@ a {
         font-size: 18px;
     }
 
+    .details-title {
+        font-size: 20px;
+    }
+
+    .details-company {
+        font-size: 16px;
+    }
+
+    .details-list li {
+        font-size: 15px;
+    }
+
     .Get_In_Touch {
         width: 55%;
         min-width: 340px;
@@ -981,8 +1088,48 @@ a {
         font-size: 13px;
     }
 
-    .details-row td {
-        padding: 10px;
+    .details-content {
+        margin: 0 5px;
+        padding: 0 4%;
+    }
+
+    .details-row.active-row .details-content {
+        padding: 16px 4%;
+        margin: 6px 5px;
+    }
+
+    .details-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+        padding-bottom: 8px;
+    }
+
+    .details-company {
+        font-size: 14px;
+        display: block;
+        margin-top: 2px;
+    }
+
+    .details-list li {
+        font-size: 13px;
+        padding: 4px 0;
+        padding-left: 14px;
+    }
+
+    .details-list li::before {
+        width: 5px;
+        height: 5px;
+        top: 12px;
+    }
+
+    .expandable-row td:last-child {
+        padding-right: 24px;
+    }
+
+    .expandable-row td:last-child::after {
+        right: 8px;
+        width: 6px;
+        height: 6px;
     }
 
     .Portfolio {
@@ -1152,6 +1299,18 @@ a {
     .Work_Experience_Table td {
         padding: 6px;
         font-size: 11px;
+    }
+
+    .details-title {
+        font-size: 16px;
+    }
+
+    .details-company {
+        font-size: 13px;
+    }
+
+    .details-list li {
+        font-size: 12px;
     }
 
     .Portfolio h1 {
