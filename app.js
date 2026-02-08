@@ -174,6 +174,21 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
+    // Separate observer for section titles — resets when they leave the viewport
+    const titleObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            } else {
+                entry.target.classList.remove('visible');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.section-title').forEach(title => {
+        titleObserver.observe(title);
+    });
+
     // Add scroll-triggered toolbar background
     let lastScroll = 0;
     const toolbar = document.querySelector('.toolbar');
