@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize typing animation
     const typingElement = document.querySelector('.typing-text');
     if (typingElement) {
-        const words = ['Web Developer', 'Software Developer', 'Game Developer', 'Superhero', 'Gamer'];
+        const words = ['Fullstack Developer', 'React Native Developer', 'C# .NET Core Developer', 'Web Developer', 'Mobile App Developer', 'API Developer'];
         typeWriter(typingElement, words, 100, 50, 2000);
     }
     // Hamburger menu toggle
@@ -160,17 +160,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe elements for scroll animations
-    const animatedElements = document.querySelectorAll('.left_block, .right_block, .project-container, .Work_Experience, .Get_In_Touch');
-    animatedElements.forEach((el, index) => {
-        // Add animation class based on element position
-        if (el.classList.contains('left_block')) {
-            el.classList.add('slide-in-left');
-        } else if (el.classList.contains('right_block')) {
-            el.classList.add('slide-in-right');
-        } else {
-            el.classList.add('fade-in');
-        }
+    // Observe elements for scroll animations (only clickable elements)
+    const animatedElements = document.querySelectorAll('.project-container');
+    animatedElements.forEach((el) => {
+        el.classList.add('fade-in');
         observer.observe(el);
     });
 
