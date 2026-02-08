@@ -44,6 +44,7 @@
             <a href="#About-me">About me</a>
             <a href="#Work-Experience">Work Experience</a>
             <a href="#Portfolio">Portfolio</a>
+            <a href="#GitHub">GitHub</a>
             <a href="#Contact">Contact Me</a>
         </nav>
     </header>
@@ -325,6 +326,72 @@
                     <p></p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="github-activity" id="GitHub" aria-label="GitHub Activity section">
+        <h1 class="section-title">GitHub Activity</h1>
+        <div class="github-content">
+            <!-- Contribution Grid -->
+            <div class="github-grid-wrapper">
+                <div class="github-grid-labels">
+                    <span></span>
+                    <span>Mon</span>
+                    <span></span>
+                    <span>Wed</span>
+                    <span></span>
+                    <span>Fri</span>
+                    <span></span>
+                </div>
+                <div class="github-grid-scroll">
+                    <div class="github-grid-months" id="github-months"></div>
+                    <div class="github-grid" id="github-grid">
+                        <!-- Skeleton loading placeholders -->
+                        <div class="github-grid-skeleton"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="github-grid-legend">
+                <span class="github-legend-label">Less</span>
+                <span class="github-legend-box" data-level="0"></span>
+                <span class="github-legend-box" data-level="1"></span>
+                <span class="github-legend-box" data-level="2"></span>
+                <span class="github-legend-box" data-level="3"></span>
+                <span class="github-legend-box" data-level="4"></span>
+                <span class="github-legend-label">More</span>
+            </div>
+
+            <!-- Recent Commits -->
+            <h2 class="github-subtitle">Recent Commits</h2>
+            <div class="github-commits" id="github-commits">
+                <!-- Skeleton loading placeholders -->
+                <div class="github-commit-card github-skeleton">
+                    <div class="skeleton-line skeleton-short"></div>
+                    <div class="skeleton-line skeleton-long"></div>
+                    <div class="skeleton-line skeleton-medium"></div>
+                </div>
+                <div class="github-commit-card github-skeleton">
+                    <div class="skeleton-line skeleton-short"></div>
+                    <div class="skeleton-line skeleton-long"></div>
+                    <div class="skeleton-line skeleton-medium"></div>
+                </div>
+                <div class="github-commit-card github-skeleton">
+                    <div class="skeleton-line skeleton-short"></div>
+                    <div class="skeleton-line skeleton-long"></div>
+                    <div class="skeleton-line skeleton-medium"></div>
+                </div>
+            </div>
+
+            <!-- Error state (hidden by default) -->
+            <div class="github-error" id="github-error" hidden>
+                <p>Unable to load GitHub data. <a href="#" id="github-retry">Try again</a></p>
+            </div>
+
+            <!-- View Profile Button -->
+            <a href="https://github.com/RoguePython" target="_blank" rel="noopener noreferrer" class="github-profile-btn">
+                <img src="assets/images/github.png" alt="" aria-hidden="true" class="github-btn-icon">
+                View GitHub Profile
+            </a>
         </div>
     </section>
 
