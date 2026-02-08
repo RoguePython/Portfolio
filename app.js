@@ -284,8 +284,14 @@ async function fetchGitHubContributions() {
     const res = await fetch(CONTRIBUTIONS_API);
     if (!res.ok) throw new Error('Contributions API error');
     const json = await res.json();
-    // json.contributions is an object { "YYYY-MM-DD": count, ... }
-    const data = json.contributions;
+    // API returns { contributions: [ { date, count, level }, ... ] }
+    // Convert array to { "YYYY-MM-DD": count } lookup for renderContributionGrid
+    const data = {};
+    if (Array.isArray(json.contributions)) {
+        json.contributions.forEach(entry => {
+            data[entry.date] = entry.count;
+        });
+    }
     setCache(CACHE_KEY_CONTRIBUTIONS, data);
     return data;
 }
@@ -298,20 +304,27 @@ async function fetchRecentCommits() {
     if (!res.ok) throw new Error('Events API error');
     const events = await res.json();
 
+    // Get the 3 most recent PushEvents, then fetch each commit's details
+    const pushEvents = events.filter(e => e.type === 'PushEvent').slice(0, 3);
     const commits = [];
-    for (const event of events) {
-        if (event.type !== 'PushEvent' || !event.payload.commits) continue;
-        for (const c of event.payload.commits) {
+
+    for (const event of pushEvents) {
+        try {
+            const commitRes = await fetch(
+                `https://api.github.com/repos/${event.repo.name}/commits/${event.payload.head}`
+            );
+            if (!commitRes.ok) continue;
+            const commitData = await commitRes.json();
             commits.push({
                 repo: event.repo.name,
-                message: c.message.split('\n')[0], // first line only
-                sha: c.sha,
+                message: commitData.commit.message.split('\n')[0],
+                sha: event.payload.head,
                 date: event.created_at,
-                url: `https://github.com/${event.repo.name}/commit/${c.sha}`
+                url: commitData.html_url
             });
-            if (commits.length >= 3) break;
+        } catch {
+            // Skip this commit if the detail fetch fails
         }
-        if (commits.length >= 3) break;
     }
 
     setCache(CACHE_KEY_COMMITS, commits);
