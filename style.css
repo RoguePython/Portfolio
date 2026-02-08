@@ -1,11 +1,11 @@
 /* CSS Variables for Theming */
 :root {
-    --primary-bg: rgb(26, 26, 26);
-    --secondary-bg: rgb(31, 45, 57);
-    --accent-color: #ff0000;
-    --text-primary: white;
-    --text-secondary: rgb(200, 200, 200);
-    --border-color: rgb(75, 75, 75);
+    --primary-bg: #0a0a0a;
+    --secondary-bg: #141414;
+    --accent-color: #cc0000;
+    --text-primary: #ffffff;
+    --text-secondary: rgb(170, 170, 170);
+    --border-color: rgb(40, 40, 40);
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
     --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
     --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.4);
@@ -43,7 +43,7 @@ html {
 }
 
 ::-webkit-scrollbar-thumb:active {
-    background: rgba(255, 0, 0, 0.8);
+    background: rgba(204, 0, 0, 0.8);
 }
 
 body {
@@ -261,7 +261,7 @@ a {
     background: linear-gradient(to bottom, 
         rgba(0, 0, 0, 0.25) 0%,
         rgba(0, 0, 0, 0.25) 20%,
-        rgb(31, 45, 57) 100%);
+        #141414 100%);
     pointer-events: none;
     z-index: 1;
 }
@@ -525,7 +525,7 @@ a {
 /* Work Experience */
 
 .Work_Experience {
-    padding: 20px;
+    padding: 40px 20px;
     background-color: var(--primary-bg);
     min-height: 400px;
     margin: 0 auto;
@@ -535,25 +535,33 @@ a {
 
 .Work_Experience_Table {
     width: 80%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     color: white;
     font-size: 22px;
-    margin-top: 25px;
-    padding-bottom: 25px;
-    margin: 0 auto;
+    margin: 25px auto 0;
+    background-color: #111111;
+    border: 1px solid rgb(50, 50, 50);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
 .Work_Experience_Table th, .Work_Experience_Table td {
-    border: 1px solid var(--border-color);
-    padding: 10px;
+    padding: 14px 18px;
     text-align: left;
+    border: none;
+    border-bottom: 1px solid rgb(35, 35, 35);
 }
 
 .Work_Experience_Table th {
-    background-color: rgba(0, 0, 0, 0.8);
-    text-decoration: Bold;
-    border: none;
-    color: var(--text-primary);
+    background-color: #1a1a1a;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    border-bottom: 2px solid var(--accent-color);
 }
 
 .Work_Experience_Table tr {
@@ -565,8 +573,7 @@ a {
 }
 
 .Work_Experience_Table .expandable-row:hover {
-    background-color: var(--secondary-bg);
-    transform: scale(1.01);
+    background-color: rgba(255, 255, 255, 0.04);
     box-shadow: var(--shadow-sm);
 }
 
@@ -620,7 +627,7 @@ a {
     transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
     opacity: 0;
     padding: 0 6%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.4);
     border-left: 3px solid var(--accent-color);
     border-radius: 0 8px 8px 0;
     margin: 0 10px;
@@ -808,7 +815,7 @@ a {
 }
 
 .project-link:hover {
-    background-color: rgba(255, 0, 0, 0.9);
+    background-color: rgba(204, 0, 0, 0.9);
     transform: translateX(-50%) translateY(-2px) scale(1.05);
 }
 
@@ -822,7 +829,7 @@ a {
 }
 
 .project-container:hover .project-info {
-    background-color: rgba(31, 45, 57, 0.95);
+    background-color: rgba(20, 20, 20, 0.95);
 }
 
 .project-info h2 {
@@ -929,7 +936,7 @@ a {
 
 .Social_Media img:hover {
     transform: scale(1.2);
-    filter: brightness(1.2) drop-shadow(0 4px 8px rgba(255, 0, 0, 0.3));
+    filter: brightness(1.2) drop-shadow(0 4px 8px rgba(204, 0, 0, 0.3));
 }
 
 /* Mobile and Tablet Responsive Styles */
@@ -983,6 +990,16 @@ a {
     .Work_Experience_Table {
         width: 95%;
         font-size: 18px;
+        border-radius: 10px;
+    }
+
+    .Work_Experience_Table th {
+        font-size: 12px;
+        padding: 12px 14px;
+    }
+
+    .Work_Experience_Table th, .Work_Experience_Table td {
+        padding: 12px 14px;
     }
 
     .details-title {
@@ -1164,38 +1181,102 @@ a {
     }
 
     .Work_Experience {
-        padding: 10px;
+        padding: 20px 10px;
         width: 100%;
         max-width: 100vw;
         box-sizing: border-box;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        overflow-x: hidden;
     }
 
     .Work_Experience h1 {
         font-size: 32px;
     }
 
+    /* --- Card layout for mobile --- */
     .Work_Experience_Table {
         width: 100%;
-        min-width: 600px;
+        min-width: unset;
         font-size: 14px;
+        border-radius: 10px;
     }
 
-    .Work_Experience_Table th,
-    .Work_Experience_Table td {
-        padding: 8px;
-        font-size: 13px;
+    .Work_Experience_Table thead {
+        display: none;
+    }
+
+    .Work_Experience_Table .expandable-row {
+        display: flex;
+        flex-direction: column;
+        padding: 16px 18px;
+        position: relative;
+        border-bottom: 1px solid rgb(35, 35, 35);
+    }
+
+    .Work_Experience_Table .expandable-row td {
+        display: block;
+        padding: 0;
+        border: none;
+    }
+
+    /* Reorder: Title (4th) first, Company (3rd) second, Date (1st) and Type (2nd) last */
+    .Work_Experience_Table .expandable-row td:nth-child(4) {
+        order: 1;
+        font-weight: 700;
+        font-size: 16px;
+        color: var(--text-primary);
+        padding-right: 28px;
+        padding-bottom: 4px;
+    }
+
+    .Work_Experience_Table .expandable-row td:nth-child(3) {
+        order: 2;
+        font-size: 14px;
+        color: var(--text-secondary);
+        padding-bottom: 6px;
+    }
+
+    .Work_Experience_Table .expandable-row td:nth-child(1) {
+        order: 3;
+        font-size: 12px;
+        color: var(--text-secondary);
+        opacity: 0.6;
+    }
+
+    .Work_Experience_Table .expandable-row td:nth-child(2) {
+        order: 4;
+        font-size: 12px;
+        color: var(--text-secondary);
+        opacity: 0.6;
+    }
+
+    /* Chevron repositioned to top-right of card */
+    .expandable-row td:last-child {
+        padding-right: 0;
+    }
+
+    .expandable-row td:last-child::after {
+        right: 0;
+        top: 4px;
+        width: 7px;
+        height: 7px;
+        position: absolute;
+    }
+
+    /* Details row - full width card continuation */
+    .Work_Experience_Table .details-row td {
+        display: block;
+        width: 100%;
     }
 
     .details-content {
-        margin: 0 5px;
+        margin: 0;
         padding: 0 4%;
+        border-radius: 0 0 8px 8px;
     }
 
     .details-row.active-row .details-content {
-        padding: 16px 4%;
-        margin: 6px 5px;
+        padding: 16px 5%;
+        margin: 0;
     }
 
     .details-title {
@@ -1220,16 +1301,6 @@ a {
         width: 5px;
         height: 5px;
         top: 12px;
-    }
-
-    .expandable-row td:last-child {
-        padding-right: 24px;
-    }
-
-    .expandable-row td:last-child::after {
-        right: 8px;
-        width: 6px;
-        height: 6px;
     }
 
     .Portfolio {
@@ -1397,12 +1468,23 @@ a {
 
     .Work_Experience_Table {
         font-size: 12px;
-        min-width: 550px;
+        min-width: unset;
     }
 
-    .Work_Experience_Table th,
-    .Work_Experience_Table td {
-        padding: 6px;
+    .Work_Experience_Table .expandable-row {
+        padding: 12px 14px;
+    }
+
+    .Work_Experience_Table .expandable-row td:nth-child(4) {
+        font-size: 15px;
+    }
+
+    .Work_Experience_Table .expandable-row td:nth-child(3) {
+        font-size: 13px;
+    }
+
+    .Work_Experience_Table .expandable-row td:nth-child(1),
+    .Work_Experience_Table .expandable-row td:nth-child(2) {
         font-size: 11px;
     }
 
