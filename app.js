@@ -16,7 +16,7 @@ function typeWriter(element, words, typingSpeed = 100, deletingSpeed = 50, pause
                 // Finished deleting, move to next word
                 isDeleting = false;
                 wordIndex = (wordIndex + 1) % words.length;
-                setTimeout(type, 500); // Pause before typing next word
+                setTimeout(type, 300); // Pause before typing next word
                 return;
             }
             
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const typingElement = document.querySelector('.typing-text');
     if (typingElement) {
         const words = ['Fullstack Developer', 'React Native Developer', 'C# .NET Core Developer', 'Web Developer', 'Mobile App Developer', 'API Developer'];
-        typeWriter(typingElement, words, 100, 50, 2000);
+        typeWriter(typingElement, words, 60, 30, 1200);
     }
     // Hamburger menu toggle
     const hamburger = document.querySelector('.hamburger');
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for scroll animations
-    const animatedElements = document.querySelectorAll('.left_block, .right_block, .project-container, .Work_Experience, .Get_In_Touch, .github-grid-wrapper, .github-commits, .github-profile-btn');
+    const animatedElements = document.querySelectorAll('.left_block, .right_block, .project-container, .Work_Experience, .Get_In_Touch, .github-grid-wrapper, .github-commits, .github-repos, .github-profile-btn');
     animatedElements.forEach((el, index) => {
         // Add animation class based on element position
         if (el.classList.contains('left_block')) {
@@ -254,8 +254,10 @@ document.addEventListener('DOMContentLoaded', function() {
 const GITHUB_USERNAME = 'RoguePython';
 const CONTRIBUTIONS_API = `https://github-contributions-api.jogruber.de/v4/${GITHUB_USERNAME}`;
 const EVENTS_API = `https://api.github.com/users/${GITHUB_USERNAME}/events/public`;
+const REPOS_API = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=pushed&per_page=3&type=owner`;
 const CACHE_KEY_CONTRIBUTIONS = 'gh_contributions';
 const CACHE_KEY_COMMITS = 'gh_commits';
+const CACHE_KEY_REPOS = 'gh_repos';
 const CACHE_TTL = 30 * 60 * 1000; // 30 minutes
 
 function getCached(key) {
@@ -285,13 +287,15 @@ async function fetchGitHubContributions() {
     if (!res.ok) throw new Error('Contributions API error');
     const json = await res.json();
     // API returns { contributions: [ { date, count, level }, ... ] }
-    // Convert array to { "YYYY-MM-DD": count } lookup for renderContributionGrid
-    const data = {};
+    const contributions = {};
+    let totalCount = 0;
     if (Array.isArray(json.contributions)) {
         json.contributions.forEach(entry => {
-            data[entry.date] = entry.count;
+            contributions[entry.date] = entry.count;
+            totalCount += entry.count;
         });
     }
+    const data = { contributions, totalCount };
     setCache(CACHE_KEY_CONTRIBUTIONS, data);
     return data;
 }
@@ -320,7 +324,9 @@ async function fetchRecentCommits() {
                 message: commitData.commit.message.split('\n')[0],
                 sha: event.payload.head,
                 date: event.created_at,
-                url: commitData.html_url
+                url: commitData.html_url,
+                additions: commitData.stats?.additions ?? 0,
+                deletions: commitData.stats?.deletions ?? 0
             });
         } catch {
             // Skip this commit if the detail fetch fails
@@ -348,12 +354,20 @@ function renderContributionGrid(contributions) {
     const startDay = new Date(endDay);
     startDay.setDate(startDay.getDate() - totalDays + 1);
 
+    // Helper: format local date as YYYY-MM-DD (avoids toISOString UTC shift)
+    function toLocalDateStr(d) {
+        const y = d.getFullYear();
+        const m = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        return `${y}-${m}-${day}`;
+    }
+
     // Determine max contribution for color scaling
     let maxCount = 0;
     const dayData = [];
     const cursor = new Date(startDay);
     while (cursor <= endDay) {
-        const key = cursor.toISOString().split('T')[0];
+        const key = toLocalDateStr(cursor);
         const count = contributions[key] || 0;
         if (count > maxCount) maxCount = count;
         dayData.push({ date: key, count, day: cursor.getDay() });
@@ -421,6 +435,12 @@ function renderContributionGrid(contributions) {
     });
 }
 
+function renderTotalContributions(totalCount) {
+    const el = document.getElementById('github-total-contributions');
+    if (!el) return;
+    el.textContent = `${totalCount.toLocaleString()} contributions in the last year`;
+}
+
 function renderCommitCards(commits) {
     const container = document.getElementById('github-commits');
     if (!container) return;
@@ -440,18 +460,28 @@ function renderCommitCards(commits) {
         card.rel = 'noopener noreferrer';
 
         // Repo name (strip owner prefix)
-        const repoShort = commit.repo.includes('/') ? commit.repo.split('/')[1] : commit.repo;
+        const repoFull = commit.repo.includes('/') ? commit.repo.split('/')[1] : commit.repo;
 
-        // Relative time
-        const timeAgo = getRelativeTime(new Date(commit.date));
+        // Formatted date (e.g. 2/8/2026)
+        const commitDate = new Date(commit.date);
+        const dateStr = `${commitDate.getMonth() + 1}/${commitDate.getDate()}/${commitDate.getFullYear()}`;
 
         // Truncate message
         const msg = commit.message.length > 72 ? commit.message.substring(0, 69) + '...' : commit.message;
 
         card.innerHTML = `
-            <span class="commit-repo">${escapeHtml(repoShort)}</span>
+            <div class="commit-header">
+                <span class="commit-repo">${escapeHtml(repoFull)}</span>
+            </div>
             <span class="commit-message">${escapeHtml(msg)}</span>
-            <span class="commit-time">${escapeHtml(timeAgo)}</span>
+            <div class="commit-stats-row">
+                <span class="commit-date">${escapeHtml(dateStr)}</span>
+                <span class="commit-diff">
+                    <span class="commit-additions">+${commit.additions}</span>
+                    <span class="commit-separator">/</span>
+                    <span class="commit-deletions">-${commit.deletions}</span>
+                </span>
+            </div>
         `;
 
         container.appendChild(card);
@@ -482,9 +512,69 @@ function escapeHtml(str) {
     return div.innerHTML;
 }
 
+async function fetchRecentRepos() {
+    const cached = getCached(CACHE_KEY_REPOS);
+    if (cached) return cached;
+
+    const res = await fetch(REPOS_API);
+    if (!res.ok) throw new Error('Repos API error');
+    const repos = await res.json();
+
+    const data = repos.map(repo => ({
+        name: repo.name,
+        description: repo.description || 'No description',
+        language: repo.language || null,
+        stars: repo.stargazers_count,
+        forks: repo.forks_count,
+        url: repo.html_url
+    }));
+
+    setCache(CACHE_KEY_REPOS, data);
+    return data;
+}
+
+function renderRepoCards(repos) {
+    const container = document.getElementById('github-repos');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    if (repos.length === 0) {
+        container.innerHTML = '<p class="github-no-data">No recent repositories found.</p>';
+        return;
+    }
+
+    repos.forEach((repo) => {
+        const card = document.createElement('a');
+        card.className = 'github-repo-card';
+        card.href = repo.url;
+        card.target = '_blank';
+        card.rel = 'noopener noreferrer';
+
+        const langDot = repo.language
+            ? `<span class="repo-lang"><span class="repo-lang-dot"></span>${escapeHtml(repo.language)}</span>`
+            : '';
+
+        card.innerHTML = `
+            <div class="repo-header">
+                <span class="repo-name">${escapeHtml(repo.name)}</span>
+            </div>
+            <span class="repo-description">${escapeHtml(repo.description)}</span>
+            <div class="repo-meta">
+                ${langDot}
+                <span class="repo-stat" title="Stars">&#9733; ${repo.stars}</span>
+                <span class="repo-stat" title="Forks">&#9741; ${repo.forks}</span>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+}
+
 async function initGitHubSection() {
     const gridEl = document.getElementById('github-grid');
     const commitsEl = document.getElementById('github-commits');
+    const reposEl = document.getElementById('github-repos');
     const errorEl = document.getElementById('github-error');
     const retryEl = document.getElementById('github-retry');
 
@@ -499,12 +589,20 @@ async function initGitHubSection() {
             <div class="github-commit-card github-skeleton"><div class="skeleton-line skeleton-short"></div><div class="skeleton-line skeleton-long"></div><div class="skeleton-line skeleton-medium"></div></div>
             <div class="github-commit-card github-skeleton"><div class="skeleton-line skeleton-short"></div><div class="skeleton-line skeleton-long"></div><div class="skeleton-line skeleton-medium"></div></div>
         `;
+        if (reposEl) {
+            reposEl.innerHTML = `
+                <div class="github-repo-card github-skeleton"><div class="skeleton-line skeleton-short"></div><div class="skeleton-line skeleton-long"></div><div class="skeleton-line skeleton-medium"></div></div>
+                <div class="github-repo-card github-skeleton"><div class="skeleton-line skeleton-short"></div><div class="skeleton-line skeleton-long"></div><div class="skeleton-line skeleton-medium"></div></div>
+                <div class="github-repo-card github-skeleton"><div class="skeleton-line skeleton-short"></div><div class="skeleton-line skeleton-long"></div><div class="skeleton-line skeleton-medium"></div></div>
+            `;
+        }
 
         let hasError = false;
 
         try {
-            const contributions = await fetchGitHubContributions();
+            const { contributions, totalCount } = await fetchGitHubContributions();
             renderContributionGrid(contributions);
+            renderTotalContributions(totalCount);
         } catch (e) {
             console.warn('Failed to load GitHub contributions:', e);
             gridEl.innerHTML = '';
@@ -520,6 +618,15 @@ async function initGitHubSection() {
             hasError = true;
         }
 
+        try {
+            const repos = await fetchRecentRepos();
+            renderRepoCards(repos);
+        } catch (e) {
+            console.warn('Failed to load recent repos:', e);
+            if (reposEl) reposEl.innerHTML = '';
+            hasError = true;
+        }
+
         if (hasError && errorEl) {
             errorEl.hidden = false;
         }
@@ -531,6 +638,7 @@ async function initGitHubSection() {
             e.preventDefault();
             sessionStorage.removeItem(CACHE_KEY_CONTRIBUTIONS);
             sessionStorage.removeItem(CACHE_KEY_COMMITS);
+            sessionStorage.removeItem(CACHE_KEY_REPOS);
             loadData();
         });
     }
