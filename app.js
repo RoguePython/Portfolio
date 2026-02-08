@@ -53,11 +53,24 @@ function initBackgroundPreload() {
 
 // Consolidated DOMContentLoaded - All initialization in one place
 document.addEventListener('DOMContentLoaded', function() {
+    // Easter egg: Console greeting for curious devs
+    console.log(
+        '%cHey, you found the dev tools! 👀\n%cClearly you have good taste.\nLet\'s talk: bendriejoubert@gmail.com',
+        'font-size:18px;font-weight:bold;color:#cc0000;',
+        'font-size:14px;color:#aaa;'
+    );
+
+    // Easter egg: Tab title change when leaving
+    const originalTitle = document.title;
+    document.addEventListener('visibilitychange', function() {
+        document.title = document.hidden ? 'Come back... I have code to show you!' : originalTitle;
+    });
+
     initBackgroundPreload();
     // Initialize typing animation
     const typingElement = document.querySelector('.typing-text');
     if (typingElement) {
-        const words = ['Fullstack Developer', 'React Native Developer', 'C# .NET Core Developer', 'Web Developer', 'Mobile App Developer', 'API Developer'];
+        const words = ['Fullstack Developer', 'React Native Developer', 'Superhero', 'C# .NET Core Developer', 'Coffee-Powered Developer', 'Web Developer', 'Mobile App Developer', 'API Developer'];
         typeWriter(typingElement, words, 60, 30, 1200);
     }
     // Hamburger menu toggle
@@ -247,6 +260,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize GitHub Activity section
     initGitHubSection();
+
+    // Easter egg: Profile pic multi-click spin
+    const selfPic = document.querySelector('.selfpic img');
+    if (selfPic) {
+        let clickCount = 0;
+        let clickTimer = null;
+        selfPic.style.cursor = 'pointer';
+        selfPic.addEventListener('click', function() {
+            clickCount++;
+            clearTimeout(clickTimer);
+            clickTimer = setTimeout(() => { clickCount = 0; }, 800);
+            if (clickCount >= 5) {
+                clickCount = 0;
+                selfPic.style.transition = 'transform 0.8s ease';
+                selfPic.style.transform = 'rotate(360deg)';
+                selfPic.setAttribute('title', 'Okay, you\'ve seen enough of my face!');
+                setTimeout(() => {
+                    selfPic.style.transition = 'transform 0.5s ease';
+                    selfPic.style.transform = 'rotate(0deg)';
+                }, 1000);
+                setTimeout(() => { selfPic.removeAttribute('title'); }, 3000);
+            }
+        });
+    }
 });
 
 // ===== GitHub Activity Section =====
