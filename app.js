@@ -284,6 +284,117 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Easter egg: Idle mouse detector
+    const idleMsg = document.getElementById('idle-message');
+    if (idleMsg) {
+        let idleTimer = null;
+        function resetIdle() {
+            idleMsg.classList.remove('visible');
+            clearTimeout(idleTimer);
+            idleTimer = setTimeout(() => { idleMsg.classList.add('visible'); }, 30000);
+        }
+        document.addEventListener('mousemove', resetIdle);
+        document.addEventListener('keydown', resetIdle);
+        resetIdle();
+    }
+
+    // Easter egg: Dynamic work duration tooltips
+    const durationData = [
+        { selector: '.expandable-row:nth-child(1) td:first-child', start: new Date(2024, 10, 1) },
+        { selector: '.expandable-row:nth-child(3) td:first-child', start: new Date(2023, 6, 1) }
+    ];
+    durationData.forEach(({ selector, start }) => {
+        const el = document.querySelector('.Work_Experience_Table tbody ' + selector);
+        if (!el) return;
+        const now = new Date();
+        let years = now.getFullYear() - start.getFullYear();
+        let months = now.getMonth() - start.getMonth();
+        if (months < 0) { years--; months += 12; }
+        const parts = [];
+        if (years > 0) parts.push(years === 1 ? '1 year' : years + ' years');
+        if (months > 0) parts.push(months === 1 ? '1 month' : months + ' months');
+        if (parts.length) el.setAttribute('title', parts.join(', ') + ' and counting...');
+    });
+
+    // Easter egg: Custom right-click context menu on hero
+    const homeSection = document.querySelector('.home');
+    const ctxMenu = document.getElementById('custom-context-menu');
+    if (homeSection && ctxMenu) {
+        homeSection.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            ctxMenu.style.top = e.clientY + 'px';
+            ctxMenu.style.left = e.clientX + 'px';
+            ctxMenu.classList.add('active');
+            ctxMenu.setAttribute('aria-hidden', 'false');
+        });
+        document.addEventListener('click', function() {
+            ctxMenu.classList.remove('active');
+            ctxMenu.setAttribute('aria-hidden', 'true');
+        });
+        ctxMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                ctxMenu.classList.remove('active');
+                ctxMenu.setAttribute('aria-hidden', 'true');
+            });
+        });
+    }
+
+    // Easter egg: Name glitch on double-click
+    const titleEl = document.querySelector('.toolbar .Title');
+    if (titleEl) {
+        const originalName = titleEl.textContent;
+        const glitchChars = '!@#$%^&*_+-=<>?/\\|{}[]';
+        titleEl.addEventListener('dblclick', function(e) {
+            e.preventDefault();
+            let iterations = 0;
+            const interval = setInterval(() => {
+                titleEl.textContent = originalName.split('').map((char, i) => {
+                    if (char === ' ') return ' ';
+                    if (i < iterations) return originalName[i];
+                    return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+                }).join('');
+                iterations += 1;
+                if (iterations > originalName.length) {
+                    clearInterval(interval);
+                    titleEl.textContent = originalName;
+                }
+            }, 35);
+        });
+    }
+
+    // Easter egg: Date-aware greetings
+    const greetingEl = document.getElementById('hero-greeting');
+    if (greetingEl) {
+        const now = new Date();
+        const month = now.getMonth();
+        const date = now.getDate();
+        const day = now.getDay();
+        let greeting = '';
+
+        if (month === 0 && date === 1) greeting = 'Happy New Year! New year, new commits.';
+        else if (month === 1 && date === 14) greeting = 'Happy Valentine\'s Day! I love clean code.';
+        else if (month === 9 && date === 31) greeting = 'Happy Halloween! No bugs here... hopefully.';
+        else if (month === 11 && date === 25) greeting = 'Merry Christmas! The best gift? Working code.';
+        else if (day === 5) greeting = 'It\'s Friday. Let\'s ship some code.';
+        else if (day === 1) greeting = 'Monday? Time to make the week count.';
+
+        greetingEl.textContent = greeting;
+    }
+
+    // Easter egg: Coffee counter
+    const coffeeCount = document.getElementById('coffee-count');
+    const coffeeCounter = document.getElementById('coffee-counter');
+    if (coffeeCount && coffeeCounter) {
+        const today = new Date();
+        const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+        let count = (seed % 5) + 2; // 2-6 coffees per day, consistent within a day
+        coffeeCount.textContent = count;
+        coffeeCounter.addEventListener('click', function() {
+            count++;
+            coffeeCount.textContent = count;
+        });
+    }
 });
 
 // ===== GitHub Activity Section =====

@@ -2253,3 +2253,100 @@ a {
         font-size: 28px;
     }
 }
+
+/* Easter egg: Idle mouse message */
+.idle-message {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-style: italic;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    pointer-events: none;
+    z-index: 9999;
+}
+.idle-message.visible {
+    opacity: 0.6;
+}
+
+/* Easter egg: Custom context menu */
+.custom-context-menu {
+    position: fixed;
+    z-index: 10000;
+    background: #1a1a1a;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 6px 0;
+    min-width: 180px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    display: none;
+}
+.custom-context-menu.active {
+    display: block;
+}
+.custom-context-menu a {
+    display: block;
+    padding: 10px 18px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+.custom-context-menu a:hover {
+    background: var(--accent-color);
+    color: var(--text-primary);
+}
+
+/* Easter egg: Hidden footer message */
+.hidden-footer-msg {
+    text-align: center;
+    font-size: 11px;
+    color: var(--primary-bg);
+    margin: 0;
+    padding: 10px 0 4px 0;
+    user-select: text;
+}
+.hidden-footer-msg::selection {
+    background: var(--accent-color);
+    color: var(--text-primary);
+}
+
+/* Easter egg: Date-aware greeting */
+.hero-greeting {
+    font-size: clamp(12px, 1.4vw, 15px);
+    color: var(--text-secondary);
+    margin: 16px 0 0 0;
+    padding: 0;
+    font-style: italic;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+    min-height: 1.2em;
+}
+
+/* Easter egg: Coffee counter */
+.coffee-counter {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    opacity: 0.3;
+    transition: opacity var(--transition-normal);
+    cursor: pointer;
+    z-index: 9999;
+    user-select: none;
+}
+.coffee-counter:hover {
+    opacity: 0.7;
+}
+.coffee-icon {
+    font-size: 16px;
+}
+.coffee-count {
+    font-variant-numeric: tabular-nums;
+}
