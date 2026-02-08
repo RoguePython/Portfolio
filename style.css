@@ -430,6 +430,12 @@ a {
     line-height: 1.5;
     border: var(--border-color) solid 1px;
     box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.left_block:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
 .left_block b {
@@ -482,6 +488,12 @@ a {
     line-height: 1.5;
     border: var(--border-color) solid 1px;
     box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.right_block:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
 .skills_technologies {
@@ -503,6 +515,11 @@ a {
     padding: 0;
     border: none;
     border-top: 2px var(--accent-color) solid;
+    transition: border-color var(--transition-fast);
+}
+
+.skills_technologies ul li:hover + hr {
+    border-top-color: var(--text-primary);
 }
 
 /* Work Experience */
@@ -849,7 +866,13 @@ a {
     border-radius: 75px;
     text-align: center;
     box-shadow: var(--shadow-md);
+    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
     box-sizing: border-box;
+}
+
+.Get_In_Touch:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
 /* Media query for screen widths 1400-1800px */

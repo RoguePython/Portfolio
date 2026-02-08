@@ -160,10 +160,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe elements for scroll animations (only clickable elements)
-    const animatedElements = document.querySelectorAll('.project-container');
-    animatedElements.forEach((el) => {
-        el.classList.add('fade-in');
+    // Observe elements for scroll animations
+    const animatedElements = document.querySelectorAll('.left_block, .right_block, .project-container, .Work_Experience, .Get_In_Touch');
+    animatedElements.forEach((el, index) => {
+        // Add animation class based on element position
+        if (el.classList.contains('left_block')) {
+            el.classList.add('slide-in-left');
+        } else if (el.classList.contains('right_block')) {
+            el.classList.add('slide-in-right');
+        } else {
+            el.classList.add('fade-in');
+        }
         observer.observe(el);
     });
 
