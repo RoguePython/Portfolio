@@ -181,12 +181,14 @@ a {
     transition: width var(--transition-normal);
 }
 
-.toolbar a:hover {
+.toolbar a:hover,
+.toolbar a.active {
     color: var(--accent-color);
     transform: translateY(-2px);
 }
 
-.toolbar a:hover::after {
+.toolbar a:hover::after,
+.toolbar a.active::after {
     width: 100%;
 }
 

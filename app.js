@@ -189,9 +189,42 @@ document.addEventListener('DOMContentLoaded', function() {
         titleObserver.observe(title);
     });
 
-    // Add scroll-triggered toolbar background
+    // Add scroll-triggered toolbar background + active navbar link highlighting
     let lastScroll = 0;
     const toolbar = document.querySelector('.toolbar');
+    const navLinks = document.querySelectorAll('.navbar a');
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateActiveNavLink() {
+        const scrollPos = window.pageYOffset;
+        // Offset accounts for the toolbar height + a small buffer
+        const offset = window.innerWidth <= 480 ? 60 : (window.innerWidth <= 768 ? 70 : 100);
+
+        let currentSection = '';
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - offset;
+            const sectionBottom = sectionTop + section.offsetHeight;
+
+            if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+
+        // If we're near the bottom of the page, highlight the last section
+        if ((window.innerHeight + scrollPos) >= document.body.offsetHeight - 50) {
+            currentSection = sections[sections.length - 1].getAttribute('id');
+        }
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').substring(1);
+            if (href === currentSection) {
+                link.classList.add('active');
+            }
+        });
+    }
+
     if (toolbar) {
         window.addEventListener('scroll', function() {
             const currentScroll = window.pageYOffset;
@@ -203,6 +236,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 toolbar.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.3)';
             }
             lastScroll = currentScroll;
+
+            // Update active nav link on scroll
+            updateActiveNavLink();
         });
+
+        // Set initial active state on page load
+        updateActiveNavLink();
     }
 });
