@@ -1164,8 +1164,8 @@ a {
     font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: var(--accent-color);
-    background: rgba(204, 0, 0, 0.1);
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.06);
     padding: 3px 8px;
     border-radius: 4px;
     margin-bottom: 10px;
@@ -1279,7 +1279,7 @@ a {
 .repo-name {
     font-size: 14px;
     font-weight: 700;
-    color: var(--accent-color);
+    color: var(--text-primary);
     word-break: break-word;
 }
 
@@ -1944,6 +1944,19 @@ a {
 
     .github-grid-wrapper {
         gap: 4px;
+        position: relative;
+    }
+
+    .github-grid-wrapper::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 28px;
+        bottom: 0;
+        width: 30px;
+        background: linear-gradient(to right, var(--primary-bg), transparent);
+        pointer-events: none;
+        z-index: 2;
     }
 
     .github-grid-labels {
@@ -2186,6 +2199,10 @@ a {
 
     .github-activity h1 {
         font-size: 28px;
+    }
+
+    .github-grid-wrapper::after {
+        left: 24px;
     }
 
     .github-grid-labels {

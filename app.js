@@ -285,9 +285,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Easter egg: Idle mouse detector
+    // Easter egg: Idle mouse detector (disabled on mobile/touch devices)
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const idleMsg = document.getElementById('idle-message');
-    if (idleMsg) {
+    if (idleMsg && !isTouchDevice) {
         let idleTimer = null;
         function resetIdle() {
             idleMsg.classList.remove('visible');
@@ -581,6 +582,16 @@ function renderContributionGrid(contributions) {
         });
         gridEl.appendChild(col);
     });
+
+    // Auto-scroll to show most recent activity on mobile
+    if (window.innerWidth <= 768) {
+        const scrollContainer = gridEl.closest('.github-grid-scroll');
+        if (scrollContainer) {
+            requestAnimationFrame(() => {
+                scrollContainer.scrollLeft = scrollContainer.scrollWidth;
+            });
+        }
+    }
 }
 
 function renderTotalContributions(totalCount) {
