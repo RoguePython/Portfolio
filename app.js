@@ -285,6 +285,46 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Easter egg: Profile pic hover-to-swap (hold hover to load ring and swap image)
+    const imgWrapper = document.querySelector('.selfpic-img-wrapper');
+    if (imgWrapper) {
+        const img = imgWrapper.querySelector('img');
+        const loaderCircle = imgWrapper.querySelector('.selfpic-loader circle');
+        const imgOriginal = 'assets/images/SelfPic.jpg';
+        const imgAlternate = 'assets/images/SelfPic2.png';
+        let isAlternate = false;
+
+        // Preload the alternate image so the swap is instant
+        const preload = new Image();
+        preload.src = imgAlternate;
+
+        imgWrapper.addEventListener('mouseenter', function () {
+            imgWrapper.classList.add('loading');
+        });
+
+        imgWrapper.addEventListener('mouseleave', function () {
+            imgWrapper.classList.remove('loading');
+        });
+
+        loaderCircle.addEventListener('transitionend', function (e) {
+            // Only react to the stroke-dashoffset transition completing (not resets)
+            if (e.propertyName !== 'stroke-dashoffset') return;
+            // Only fire when the ring has fully loaded (offset is 0)
+            const offset = parseFloat(getComputedStyle(loaderCircle).strokeDashoffset);
+            if (Math.abs(offset) > 1) return;
+
+            // Brief flash while swapping
+            imgWrapper.classList.add('swapping');
+            imgWrapper.classList.remove('loading');
+
+            setTimeout(() => {
+                isAlternate = !isAlternate;
+                img.src = isAlternate ? imgAlternate : imgOriginal;
+                imgWrapper.classList.remove('swapping');
+            }, 300);
+        });
+    }
+
     // Easter egg: Idle mouse detector (disabled on mobile/touch devices)
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const idleMsg = document.getElementById('idle-message');

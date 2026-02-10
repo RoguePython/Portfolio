@@ -480,10 +480,49 @@ a {
     margin-bottom: 20px;
 }
 
+.selfpic-img-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
 .selfpic img {
     height: 375px;
-    border-radius: 360px;
-    margin-right: 20px; /* Add some space between the image and the text */
+    border-radius: 50%;
+    display: block;
+    transition: opacity 0.4s ease;
+}
+
+.selfpic-img-wrapper .selfpic-loader {
+    position: absolute;
+    top: -4%;
+    left: -4%;
+    width: 108%;
+    height: 108%;
+    pointer-events: none;
+    transform: rotate(-90deg); /* Start the stroke from the top */
+}
+
+.selfpic-img-wrapper .selfpic-loader circle {
+    fill: none;
+    stroke: var(--accent-color);
+    stroke-width: 3;
+    stroke-linecap: round;
+    /* Circumference = 2 * PI * 96 ≈ 603.19 */
+    stroke-dasharray: 603.19;
+    stroke-dashoffset: 603.19;
+    transition: none; /* No transition by default so reset is instant */
+}
+
+.selfpic-img-wrapper.loading .selfpic-loader circle {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 2.5s linear;
+}
+
+/* Brief flash effect when the image swaps */
+.selfpic-img-wrapper.swapping img {
+    opacity: 0.6;
 }
 
 .selfpic-text {
@@ -499,7 +538,7 @@ a {
         text-align: center; /* Center the text under the image */
     }
 
-    .selfpic img {
+    .selfpic-img-wrapper {
         margin-right: 0; /* Remove the right margin */
         margin-bottom: 20px; /* Add space between the image and the text */
     }
@@ -1724,6 +1763,9 @@ a {
 
     .selfpic img {
         height: 250px;
+    }
+
+    .selfpic-img-wrapper {
         margin-right: 0;
         margin-bottom: 15px;
     }
