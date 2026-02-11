@@ -1732,6 +1732,22 @@ a {
         margin-bottom: 20px;
     }
 
+    .hero-contact-links {
+        gap: 16px;
+        margin-top: 22px;
+    }
+
+    .hero-contact-links a {
+        font-size: 14px;
+        padding: 7px 14px;
+        gap: 6px;
+    }
+
+    .hero-contact-links img {
+        width: 18px;
+        height: 18px;
+    }
+
     .about-me {
         flex-direction: column;
         padding: 20px 10px;
@@ -2156,6 +2172,22 @@ a {
         letter-spacing: 1px;
     }
 
+    .hero-contact-links {
+        gap: 12px;
+        margin-top: 18px;
+    }
+
+    .hero-contact-links a {
+        font-size: 13px;
+        padding: 6px 12px;
+        gap: 5px;
+    }
+
+    .hero-contact-links img {
+        width: 16px;
+        height: 16px;
+    }
+
     .left_block {
         padding: 15px;
         font-size: 16px;
@@ -2370,6 +2402,56 @@ a {
 .hidden-footer-msg::selection {
     background: var(--accent-color);
     color: var(--text-primary);
+}
+
+/* Hero — Contact links */
+.hero-contact-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    margin: 28px 0 0 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.hero-contact-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), background var(--transition-fast);
+}
+
+.hero-contact-links a:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    background: rgba(204, 0, 0, 0.08);
+}
+
+.hero-contact-links a:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+    border-radius: 8px;
+}
+
+.hero-contact-links img {
+    width: 20px;
+    height: 20px;
+    filter: invert(1) brightness(1.5);
+    transition: filter var(--transition-fast);
+}
+
+.hero-contact-links a:hover img {
+    filter: invert(1) brightness(1.8) drop-shadow(0 0 4px rgba(204, 0, 0, 0.4));
 }
 
 /* Easter egg: Date-aware greeting */
