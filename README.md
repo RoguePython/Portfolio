@@ -59,8 +59,14 @@ Before going professional, I spent 3 years building projects, freelancing, and l
 > A C# .NET Core Web API that calculates optimal change denominations. Small project, clean code, zero bugs.* <br>
 > *\*At the time of writing.*
 
-### 🎮 Pipe Flow
-> A vanilla JS pipe puzzle — rotate pipes so liquid reaches the exit. Built in a single Cursor prompt because I was bored.
+### 🎮 Prompt Games
+> A collection of quick vanilla JS games built in Cursor prompts — no frameworks, no build step. Play from the [games hub](games/).
+
+| Game | Description |
+|------|-------------|
+| **Pipe Flow** | Rotate pipes so liquid reaches the exit. Fewer moves, higher score. |
+| **Snake** | Classic arcade snake with smooth canvas animation, themes, grid settings, and pause. |
+| **Minesweeper** | Classic minefield with three difficulties, timer, flags, chord reveal, and best times. |
 
 ### ✂️ Cut Wise *(Work in Progress)*
 > A tool designed for engineers. More details soon.
@@ -94,10 +100,22 @@ Portfolio/
 │   ├── index.html
 │   ├── app.js
 │   └── style.css
-├── Pipe Game/              # Pipe Flow — vanilla JS pipe puzzle
-│   ├── index.html
-│   ├── game.js
-│   └── styles.css
+├── games/                  # Prompt games hub
+│   ├── index.html          # Hub — lists all games
+│   ├── hub.css
+│   ├── hub.js
+│   ├── pipe-flow/          # Pipe Flow — vanilla JS pipe puzzle
+│   │   ├── index.html
+│   │   ├── game.js
+│   │   └── styles.css
+│   ├── snake/              # Snake — classic arcade
+│   │   ├── index.html
+│   │   ├── game.js
+│   │   └── styles.css
+│   ├── minesweeper/        # Minesweeper — classic minefield
+│   │   ├── index.html
+│   │   ├── game.js
+│   │   └── styles.css
 ├── assets/
 │   └── images/             # Project screenshots, icons, profile photos
 ├── docs/
@@ -129,9 +147,9 @@ git clone https://github.com/RoguePython/Portfolio.git
 
 ## Version
 
-**Current:** `v1.2.0`
+**Current:** `v1.3.0`
 
-See the [release notes](docs/release-notes/v1.2.0.md) for the latest changes.
+See the [release notes](docs/release-notes/v1.3.0.md) for the latest changes.
 
 ## Contact
 

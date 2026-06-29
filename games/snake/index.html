@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Snake</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <a href="../" class="topbar__back" aria-label="Back to games menu">&larr; Games</a>
+        <div class="brand">Snake</div>
+        <div class="stats">
+          <span>Score <strong id="scoreVal">0</strong></span>
+          <span>Best <strong id="bestVal">0</strong></span>
+        </div>
+      </header>
+
+      <p id="controlsHint" class="hint" aria-live="polite"></p>
+
+      <div class="board-wrap" id="boardWrap">
+        <canvas id="canvas" role="img" aria-label="Snake game board"></canvas>
+        <div id="deathFlash" class="death-flash" aria-hidden="true"></div>
+      </div>
+
+      <p id="statusMsg" class="status" role="status" aria-live="polite"></p>
+
+      <!-- Settings overlay -->
+      <div id="settingsOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <div class="overlay__panel">
+          <h2 id="settingsTitle" class="overlay__title">Game Settings</h2>
+          <form id="settingsForm" class="settings-form">
+            <fieldset class="field">
+              <legend>Grid size</legend>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="gridSize" value="small" />
+                  <span>Small <small>(16×16)</small></span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="gridSize" value="medium" checked />
+                  <span>Medium <small>(20×20)</small></span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="gridSize" value="large" />
+                  <span>Large <small>(24×24)</small></span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="field">
+              <legend>Controls</legend>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="controls" value="arrows" checked />
+                  <span>Arrow keys</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="controls" value="wasd" />
+                  <span>WASD</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="field">
+              <legend>Theme</legend>
+              <div class="theme-group" id="themeGroup"></div>
+            </fieldset>
+
+            <button type="submit" class="btn btn--primary">Start Game</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Pause overlay -->
+      <div id="pauseOverlay" class="overlay overlay--hidden overlay--board" role="dialog" aria-modal="true" aria-labelledby="pauseTitle" hidden>
+        <div class="overlay__panel overlay__panel--compact">
+          <h2 id="pauseTitle" class="overlay__title">Paused</h2>
+          <p class="overlay__hint">Press <kbd>Esc</kbd> to resume</p>
+          <div class="overlay__actions">
+            <button type="button" id="resumeBtn" class="btn btn--primary">Resume</button>
+            <button type="button" id="pauseSettingsBtn" class="btn">Settings</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game over overlay -->
+      <div id="gameOverOverlay" class="overlay overlay--hidden" role="dialog" aria-modal="true" aria-labelledby="gameOverTitle" hidden>
+        <div class="overlay__panel overlay__panel--compact">
+          <h2 id="gameOverTitle" class="overlay__title">Game Over</h2>
+          <p class="overlay__score">Score: <strong id="finalScore">0</strong></p>
+          <p id="newBestMsg" class="overlay__new-best" hidden>New high score!</p>
+          <div class="overlay__actions">
+            <button type="button" id="playAgainBtn" class="btn btn--primary">Play Again</button>
+            <button type="button" id="settingsBtn" class="btn">Settings</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>

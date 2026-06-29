@@ -1,0 +1,57 @@
+/* Games hub — portfolio section styling with small page-specific additions */
+
+.games-hub {
+  min-height: 100vh;
+  padding-top: 48px;
+  padding-bottom: 120px;
+}
+
+.games-hub__back {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  margin: 0 0 28px 20%;
+  color: var(--text-secondary);
+  font-size: 15px;
+  transition: color var(--transition-fast);
+}
+
+.games-hub__back:hover,
+.games-hub__back:focus-visible {
+  color: var(--accent-color);
+}
+
+.games-hub__back:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.games-hub__intro {
+  position: relative;
+  z-index: 2;
+  max-width: 560px;
+  margin: 0 auto 48px;
+  padding: 0 20px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.55;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .games-hub__back {
+    margin-left: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .games-hub {
+    padding-top: 32px;
+    padding-bottom: 80px;
+  }
+
+  .games-hub__back {
+    margin-left: 16px;
+  }
+}
