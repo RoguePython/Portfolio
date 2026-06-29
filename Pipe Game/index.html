@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pipe Flow</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">Pipe Flow</div>
+        <div class="stats">
+          <span>Level <strong id="levelVal">1</strong></span>
+          <span>Moves <strong id="movesVal">0</strong></span>
+          <span>Score <strong id="scoreVal">0</strong></span>
+        </div>
+        <button type="button" id="newGameBtn" class="btn">New game</button>
+      </header>
+      <p class="hint">
+        Rotate pipes so liquid reaches the exit. Fewer moves earn more points for that level.
+        <span class="formula" id="scoreFormulaHint"></span>
+      </p>
+      <div id="board" class="board" aria-label="Pipe puzzle board"></div>
+      <p id="statusMsg" class="status" role="status"></p>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>

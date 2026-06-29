@@ -59,8 +59,8 @@ Before going professional, I spent 3 years building projects, freelancing, and l
 > A C# .NET Core Web API that calculates optimal change denominations. Small project, clean code, zero bugs.* <br>
 > *\*At the time of writing.*
 
-### 🎮 Cafe Chaos *(Work in Progress)*
-> A cozy-but-chaotic game — because managing a real cafe wasn't chaotic enough.
+### 🎮 Pipe Flow
+> A vanilla JS pipe puzzle — rotate pipes so liquid reaches the exit. Built in a single Cursor prompt because I was bored.
 
 ### ✂️ Cut Wise *(Work in Progress)*
 > A tool designed for engineers. More details soon.
@@ -94,6 +94,10 @@ Portfolio/
 │   ├── index.html
 │   ├── app.js
 │   └── style.css
+├── Pipe Game/              # Pipe Flow — vanilla JS pipe puzzle
+│   ├── index.html
+│   ├── game.js
+│   └── styles.css
 ├── assets/
 │   └── images/             # Project screenshots, icons, profile photos
 ├── docs/
