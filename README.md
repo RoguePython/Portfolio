@@ -68,6 +68,7 @@ Before going professional, I spent 3 years building projects, freelancing, and l
 | **Snake** | Classic arcade snake with smooth canvas animation, themes, grid settings, and pause. |
 | **Minesweeper** | Classic minefield with three difficulties, timer, flags, chord reveal, and best times. |
 | **Tetra Blocks** | Guideline-style falling blocks with 7-bag randomizer, ghost piece, hard drop, and line-clear animations. |
+| **Ball Bash** | Slingshot physics puzzler — aim trajectory preview, collapse structures, defeat enemy balls. Matter.js. |
 
 ### ✂️ Cut Wise *(Work in Progress)*
 > A tool designed for engineers. More details soon.
@@ -117,9 +118,15 @@ Portfolio/
 │   │   ├── index.html
 │   │   ├── game.js
 │   │   └── styles.css
-│   └── tetra-blocks/       # Tetra Blocks — falling blocks puzzle
+│   ├── tetra-blocks/       # Tetra Blocks — falling blocks puzzle
+│   │   ├── index.html
+│   │   ├── game.js
+│   │   ├── styles.css
+│   │   └── README.md
+│   └── ball-bash/          # Ball Bash — slingshot physics (Matter.js)
 │       ├── index.html
 │       ├── game.js
+│       ├── levels.js
 │       ├── styles.css
 │       └── README.md
 ├── assets/

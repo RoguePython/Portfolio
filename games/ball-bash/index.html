@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ball Bash</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <a href="../" class="topbar__back" aria-label="Back to games menu">&larr; Games</a>
+        <div class="brand">Ball Bash</div>
+        <div class="stats">
+          <span>Level <strong id="levelVal">1</strong></span>
+          <span>Birds <strong id="birdsVal">0</strong></span>
+          <span>Stars <strong id="starsVal">—</strong></span>
+        </div>
+        <button type="button" id="pauseBtn" class="btn btn--sm">Pause</button>
+      </header>
+
+      <p id="controlsHint" class="hint" aria-live="polite">
+        Drag the bird on the slingshot to aim · Release to launch
+      </p>
+
+      <div class="board-wrap" id="boardWrap">
+        <canvas id="canvas" role="img" aria-label="Ball Bash playfield"></canvas>
+      </div>
+
+      <p id="statusMsg" class="status" role="status" aria-live="polite"></p>
+
+      <!-- Settings overlay -->
+      <div id="settingsOverlay" class="overlay" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+        <div class="overlay__panel">
+          <h2 id="settingsTitle" class="overlay__title">Ball Bash</h2>
+          <form id="settingsForm" class="settings-form">
+            <fieldset class="field">
+              <legend>Theme</legend>
+              <div class="theme-group" id="themeGroup"></div>
+            </fieldset>
+            <button type="submit" class="btn btn--primary">Level Select</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Level select overlay -->
+      <div id="levelSelectOverlay" class="overlay overlay--hidden" role="dialog" aria-modal="true" aria-labelledby="levelSelectTitle" hidden>
+        <div class="overlay__panel overlay__panel--wide">
+          <h2 id="levelSelectTitle" class="overlay__title">Select Level</h2>
+          <div id="levelGrid" class="level-grid" role="list"></div>
+          <div class="overlay__actions">
+            <button type="button" id="levelSettingsBtn" class="btn">Settings</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pause overlay -->
+      <div id="pauseOverlay" class="overlay overlay--hidden overlay--board" role="dialog" aria-modal="true" aria-labelledby="pauseTitle" hidden>
+        <div class="overlay__panel overlay__panel--compact">
+          <h2 id="pauseTitle" class="overlay__title">Paused</h2>
+          <p class="overlay__hint">Press <kbd>Esc</kbd> to resume</p>
+          <div class="overlay__actions">
+            <button type="button" id="resumeBtn" class="btn btn--primary">Resume</button>
+            <button type="button" id="pauseLevelSelectBtn" class="btn">Level Select</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Win overlay -->
+      <div id="winOverlay" class="overlay overlay--hidden" role="dialog" aria-modal="true" aria-labelledby="winTitle" hidden>
+        <div class="overlay__panel overlay__panel--compact">
+          <h2 id="winTitle" class="overlay__title">Level Complete!</h2>
+          <div id="winStars" class="star-row star-row--large" aria-label="Stars earned"></div>
+          <p class="overlay__score">Birds used: <strong id="winBirdsUsed">0</strong></p>
+          <div class="overlay__actions">
+            <button type="button" id="nextLevelBtn" class="btn btn--primary">Next Level</button>
+            <button type="button" id="winRetryBtn" class="btn">Retry</button>
+            <button type="button" id="winLevelSelectBtn" class="btn">Level Select</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lose overlay -->
+      <div id="loseOverlay" class="overlay overlay--hidden" role="dialog" aria-modal="true" aria-labelledby="loseTitle" hidden>
+        <div class="overlay__panel overlay__panel--compact">
+          <h2 id="loseTitle" class="overlay__title">Out of Birds!</h2>
+          <p class="overlay__hint">Some enemies are still standing.</p>
+          <div class="overlay__actions">
+            <button type="button" id="loseRetryBtn" class="btn btn--primary">Retry</button>
+            <button type="button" id="loseLevelSelectBtn" class="btn">Level Select</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/matter-js@0.20.0/build/matter.min.js"></script>
+    <script src="levels.js"></script>
+    <script src="game.js"></script>
+  </body>
+</html>
