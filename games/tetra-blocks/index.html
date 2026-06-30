@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tetra Blocks</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <a href="../" class="topbar__back" aria-label="Back to games menu">&larr; Games</a>
+        <div class="brand">Tetra Blocks</div>
+        <div class="stats">
+          <span>Score <strong id="scoreVal">0</strong></span>
+          <span>Level <strong id="levelVal">1</strong></span>
+          <span>Lines <strong id="linesVal">0</strong></span>
+          <span>Best <strong id="bestVal">0</strong></span>
+        </div>
+        <button type="button" id="pauseBtn" class="btn">Pause</button>
+      </header>
+
+      <p id="controlsHint" class="hint" aria-live="polite">
+        Arrows move &amp; rotate &middot; <kbd>Space</kbd> hard drop &middot; <kbd>Esc</kbd> pause
+      </p>
+
+      <div class="game-layout">
+        <div class="playfield">
+          <div class="board-wrap">
+            <canvas id="boardCanvas" role="img" aria-label="Tetra Blocks playfield"></canvas>
+          </div>
+        </div>
+
+        <aside class="sidebar" aria-label="Next pieces and stats">
+          <div class="sidebar__panel">
+            <h2 class="sidebar__title">Next</h2>
+            <div class="next-queue">
+              <div class="next-slot"><canvas class="next-canvas" data-index="0" aria-hidden="true"></canvas></div>
+              <div class="next-slot"><canvas class="next-canvas" data-index="1" aria-hidden="true"></canvas></div>
+              <div class="next-slot"><canvas class="next-canvas" data-index="2" aria-hidden="true"></canvas></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <p id="statusMsg" class="status" role="status" aria-live="polite"></p>
+
+      <div id="pauseOverlay" class="overlay overlay--hidden" role="dialog" aria-modal="true" aria-labelledby="pauseTitle" hidden>
+        <div class="overlay__panel overlay__panel--compact">
+          <h2 id="pauseTitle" class="overlay__title">Paused</h2>
+          <p class="overlay__hint">Press <kbd>Esc</kbd> to resume</p>
+          <div class="overlay__actions">
+            <button type="button" id="resumeBtn" class="btn btn--primary">Resume</button>
+            <button type="button" id="newGamePauseBtn" class="btn">New Game</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="gameOverOverlay" class="overlay overlay--hidden" role="dialog" aria-modal="true" aria-labelledby="gameOverTitle" hidden>
+        <div class="overlay__panel overlay__panel--compact">
+          <h2 id="gameOverTitle" class="overlay__title">Game Over</h2>
+          <p class="overlay__score">Score: <strong id="finalScore">0</strong></p>
+          <p id="newBestMsg" class="overlay__new-best" hidden>New high score!</p>
+          <div class="overlay__actions">
+            <button type="button" id="playAgainBtn" class="btn btn--primary">Play Again</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="game.js"></script>
+  </body>
+</html>
